@@ -1,6 +1,8 @@
 import Header from 'next/head';
 import { Navbar } from '../components/Navbar';
+import NoSsr from '../components/No-Ssr';
 import { Box, Container } from '@chakra-ui/react';
+import { VoxelDog } from '../components/Voxel-Dog';
 
 export const MainLayout = ({ children, router }) => {
   return (
@@ -13,6 +15,9 @@ export const MainLayout = ({ children, router }) => {
       <Navbar path={router.asPath} />
 
       <Container maxW="container.md" pt={14}>
+        <NoSsr>
+          <VoxelDog />
+        </NoSsr>
         {children}
       </Container>
     </Box>

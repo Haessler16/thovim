@@ -15,11 +15,11 @@ const components = {
       'section-title': {
         textDecoration: 'underline',
         fontSize: 20,
-        textUnderLineOffset: 6,
+        textUnderlineOffset: 6,
         textDecorationColor: '#525252',
         textDecorationThickness: 4,
         marginTop: 3,
-        marginBotton: 4,
+        marginBottom: 4,
       },
     },
   },
