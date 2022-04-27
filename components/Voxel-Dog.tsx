@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Box, Spinner } from '@chakra-ui/react';
+import { WebGLRenderer } from 'three';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { loadGLTFModel } from '../lib/model';
@@ -11,7 +12,7 @@ function easeOutCirc(x) {
 export const VoxelDog = () => {
   const refContainer = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
-  const [renderer, setRenderer] = useState();
+  const [renderer, setRenderer] = useState<WebGLRenderer>();
   const [camera, setCamera] = useState();
   const [target] = useState(new THREE.Vector3(-0.5, 1.2, 0));
   const [initialCameraPosition] = useState(
@@ -24,6 +25,15 @@ export const VoxelDog = () => {
 
   const [scene] = useState(new THREE.Scene());
   const [controls, setControls] = useState();
+
+  const handleWindowResize = useCallback(() => {
+    const { current: container } = refContainer;
+    if (container && renderer) {
+      const scW = container.clientWidth;
+      const scH = container.clientHeight;
+      renderer.setSize(scW, scH);
+    }
+  }, [renderer]);
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
@@ -42,6 +52,7 @@ export const VoxelDog = () => {
       renderer.setSize(scW, scH);
       renderer.outputEncoding = THREE.sRGBEncoding;
       container.appendChild(renderer.domElement);
+      setRenderer(renderer);
 
       // 640 -> 240
       // 8 -> 6
@@ -106,13 +117,20 @@ export const VoxelDog = () => {
     }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize, false);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize, false);
+    };
+  }, [renderer, handleWindowResize]);
+
   return (
     <Box
       ref={refContainer}
       className="voxel-dog"
       m="auto"
-      at={['-20px', '-60px', '-120px']}
-      mb={['-40px', '-140px', '200px']}
+      mt={['-20px', '-60px', '-120px']}
+      mb={['-40px', '-140px', '-200px']}
       w={[280, 480, 640]}
       h={[280, 480, 640]}
       position="relative"

@@ -69,8 +69,8 @@ export const Navbar = (props) => {
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
-          <LinkItem href="/post" path={path}>
-            Post
+          <LinkItem href="/posts" path={path}>
+            Posts
           </LinkItem>
         </Stack>
 
