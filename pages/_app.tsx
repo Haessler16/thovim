@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <ChakraProvider theme={theme}>
       <Fonts />
       <MainLayout router={router}>
-        <AnimatePresence exitBeforeEnter initial={true}>
+        <AnimatePresence mode="wait" initial={true}>
           <Component {...pageProps} />
         </AnimatePresence>
       </MainLayout>

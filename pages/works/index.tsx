@@ -49,6 +49,7 @@ const Works = () => {
               painters like Van Gogh
             </WorkGridItem>
           </Section>
+
           <Section delay={'0.1'}>
             <WorkGridItem id="menkiki" thumbnail={thumbMenkiki} title="Menkiki">
               An app that suggests ramen(noodle) shops based on a given photo of

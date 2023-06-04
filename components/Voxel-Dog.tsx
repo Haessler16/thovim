@@ -124,6 +124,7 @@ export const VoxelDog = () => {
     };
   }, [renderer, handleWindowResize]);
 
+  console.log('BUM');
   return (
     <Box
       ref={refContainer}

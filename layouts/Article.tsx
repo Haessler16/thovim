@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { GridItemStyle } from '../components/GridItem';
+import { ReactNode } from 'react';
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 0 },
@@ -8,7 +9,13 @@ const variants = {
   exit: { opacity: 0, x: 0, y: 0 },
 };
 
-export const ArticleLayout = ({ children, title }) => {
+interface iArticleLayout {
+  children?: ReactNode;
+  title: string;
+}
+
+export const ArticleLayout = ({ children, title }: iArticleLayout) => {
+  // console.log({ title, children });
   return (
     <motion.article
       initial="hidden"
@@ -18,11 +25,12 @@ export const ArticleLayout = ({ children, title }) => {
       transition={{ duration: 0.4, type: 'easeInOut' }}
       style={{ position: 'relative' }}
     >
-      {title && (
+      {typeof title === 'string' && (
         <Head>
           <title>{title} - Haessler León</title>
         </Head>
       )}
+
       {children}
       <GridItemStyle />
     </motion.article>

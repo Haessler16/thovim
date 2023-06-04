@@ -21,20 +21,18 @@ export const Logo = () => {
   const footPrintImg = `/images/footprint${useColorModeValue('', '-dark')}.png`;
 
   return (
-    <Link href="/">
-      <a>
-        <LogoBox>
-          <Image src={footPrintImg} width={20} height={20} alt="logo" />
-          <Text
-            color={useColorModeValue('gray.80', 'whiteAlpha.90')}
-            fontFamily="M PLUS Rounded 1c"
-            fontWeight="bold"
-            ml={3}
-          >
-            Haessler León
-          </Text>
-        </LogoBox>
-      </a>
+    <Link href="/" passHref>
+      <LogoBox>
+        <Image src={footPrintImg} width={20} height={20} alt="logo" />
+        <Text
+          color={useColorModeValue('gray.80', 'whiteAlpha.90')}
+          fontFamily="M PLUS Rounded 1c"
+          fontWeight="bold"
+          ml={3}
+        >
+          Haessler León
+        </Text>
+      </LogoBox>
     </Link>
   );
 };

@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { Box, Text, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
 import { ReactNode } from 'react';
@@ -18,7 +18,7 @@ export const GridItem = ({
   thumbnail,
 }: IGridItemProps) => {
   return (
-    <Box w="100" align="center">
+    <Box w="100" alignItems="center">
       <LinkBox cursor="pointer">
         <Image
           src={thumbnail}
@@ -38,7 +38,7 @@ export const GridItem = ({
 
 export const WorkGridItem = ({ children, id, title, thumbnail }) => {
   return (
-    <Box w="100" align="center">
+    <Box w="100" alignItems="center">
       <NextLink href={`/works/${id}`}>
         <LinkBox cursor="pointer">
           <Image

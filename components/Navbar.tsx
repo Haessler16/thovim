@@ -14,22 +14,24 @@ import {
   IconButton,
   useColorModeValue,
 } from '@chakra-ui/react';
+
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { ThemeToggleButton } from './ThemeToggleButton';
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha900');
+
   return (
-    <NextLink href={href}>
-      <Link
-        p={2}
-        bg={active ? 'glassTeal' : undefined}
-        color={active ? '#202023' : inactiveColor}
-      >
-        {children}
-      </Link>
-    </NextLink>
+    <Link
+      as={NextLink}
+      href={href}
+      p={2}
+      bg={active ? 'glassTeal' : undefined}
+      color={active ? '#202023' : inactiveColor}
+    >
+      {children}
+    </Link>
   );
 };
 
@@ -49,15 +51,16 @@ export const Navbar = (props) => {
         display="flex"
         p={2}
         maxW="container.md"
-        wrap="wrap"
-        align="center"
-        justify="space-between"
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent="space-between"
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={'tighter'}>
             <Logo />
           </Heading>
         </Flex>
+
         <Stack
           direction={{ base: 'column', md: 'row' }}
           display={{ base: 'none', md: 'flex' }}
@@ -66,16 +69,26 @@ export const Navbar = (props) => {
           flexGrow={1}
           mt={{ base: 4, nmd: 0 }}
         >
+          <LinkItem href="/about" path={path}>
+            About
+          </LinkItem>
+
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
+
           <LinkItem href="/posts" path={path}>
             Posts
           </LinkItem>
+
+          <LinkItem href="/contact" path={path}>
+            Contact
+          </LinkItem>
         </Stack>
 
-        <Box flex={1} align="right">
+        <Box flex={1} alignItems="right">
           <ThemeToggleButton />
+
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu>
               <MenuButton
@@ -86,7 +99,7 @@ export const Navbar = (props) => {
               />
 
               <MenuList>
-                <NextLink href="/" passHref>
+                {/* <NextLink href="/" passHref>
                   <MenuItem as={Link}>About</MenuItem>
                 </NextLink>
                 <NextLink href="/works" passHref>
@@ -94,7 +107,7 @@ export const Navbar = (props) => {
                 </NextLink>
                 <NextLink href="/post" passHref>
                   <MenuItem as={Link}>Post</MenuItem>
-                </NextLink>
+                </NextLink> */}
 
                 <MenuItem
                   as={Link}

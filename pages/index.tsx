@@ -22,12 +22,7 @@ import { BioSection, BioYear } from '../components/Bio';
 
 import { ArticleLayout } from '../layouts/Article';
 
-import {
-  IoLogoTwitter,
-  IoLogoInstagram,
-  IoLogoGithub,
-  IoLogoDiscord,
-} from 'react-icons/io5';
+import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
 
 import { GridItem } from '../components/GridItem';
 
@@ -43,22 +38,25 @@ const Home: NextPage = () => {
           bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
           mb={6}
           p={3}
-          align="center"
+          alignItems="center"
         >
           Hello, I´m a full-stack developer based in Venezuela!
         </Box>
+        {/* DESCRIPTION AND PHOTO */}
         <Box display={{ md: 'flex' }}>
           <Box flexGrow={1}>
             <Heading as="h2" variant="page-title">
               Haessler León
             </Heading>
-            <p>Digital Craftzman (Artist / Developer / Designer)</p>
+
+            <p>Digital Enthusiast ( Developer / Designer )</p>
           </Box>
+
           <Box
             flexShrink={0}
             mt={{ base: 4, md: 0 }}
             ml={{ md: 6 }}
-            align="center"
+            alignItems="center"
           >
             <Image
               borderColor="whiteAlpha.800"
@@ -67,39 +65,43 @@ const Home: NextPage = () => {
               maxWidth="100px"
               display="inline-block"
               borderRadius="full"
-              src="/images/takuya.jpg"
+              src="/images/hae.jpeg"
               alt="Haessler León"
             />
           </Box>
         </Box>
+
+        {/* WORK */}
         <Section delay={'0.1'}>
           <Heading as="h2" variant="section-title">
             Work
           </Heading>
+
           <Paragraph>
             I´m a full-stack developer based in Venezuela. I´m a passionate
             developer, designer and artist. I´m currently working as a
             freelancer.
             <NextLink href="/work/inkdrop">
-              <Link>
-                <br />
-                <br />
-                See my work
-              </Link>
+              <br />
+              <br />
+              See my work
             </NextLink>
           </Paragraph>
-          <Box align="center" my={4}>
+
+          <Box alignItems="center" my={4}>
             <NextLink href="/works">
               <Button
                 rightIcon={<ChevronRightIcon />}
                 colorScheme="teal"
-                variantcolor="blue"
+                variant="blue"
               >
                 My Portfolio
               </Button>
             </NextLink>
           </Box>
         </Section>
+
+        {/* BIOGRAPHY */}
         <Section delay={'0.2'}>
           <Heading as="h3" variant="section-title">
             Bio
@@ -115,17 +117,14 @@ const Home: NextPage = () => {
           </BioSection>
         </Section>
 
+        {/* WHAT I LIKE */}
         <Section delay={'0.3'}>
           <Heading as="h3" variant="section-title">
             I 💙
           </Heading>
+
           <Paragraph>
-            Art, Music{' '}
-            <Link href="https://www.instagram.com/haesslerleon/">Drawing</Link>,{' '}
-            <Link href="https://www.instagram.com/haesslerleon/">
-              Photography
-            </Link>
-            , Machine Learning
+            Art, Music, Drawing, Photography and Machine Learning
           </Paragraph>
         </Section>
 
@@ -134,59 +133,43 @@ const Home: NextPage = () => {
           <Heading as="h3" variant="section-title">
             On the web
           </Heading>
+
           <List>
             <ListItem>
-              <Link href="https://github.com/craftzdog" target="_blank">
+              <Link href="https://github.com/Haessler16" target="_blank">
                 <Button
                   variant="ghost"
                   colorScheme="teal"
                   leftIcon={<Icon as={IoLogoGithub} />}
                 >
-                  @craftzdog
+                  @haessler16
                 </Button>
               </Link>
             </ListItem>
+
             <ListItem>
-              <Link href="https://twitter.com/inkdrop_app" target="_blank">
+              <Link href="https://twitter.com/haesslertvm" target="_blank">
                 <Button
                   variant="ghost"
                   colorScheme="teal"
                   leftIcon={<Icon as={IoLogoTwitter} />}
                 >
-                  @inkdrop_app
+                  @haesslertvm
                 </Button>
               </Link>
             </ListItem>
+
             <ListItem>
-              <Link href="https://twitter.com/craftzdog" target="_blank">
+              <Link
+                href="https://www.linkedin.com/in/haessler-leon-633a10182/"
+                target="_blank"
+              >
                 <Button
                   variant="ghost"
                   colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoTwitter} />}
+                  leftIcon={<Icon as={IoLogoLinkedin} />}
                 >
-                  @craftzdog
-                </Button>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href="https://instagram.com/craftzdog" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoInstagram} />}
-                >
-                  @craftzdog
-                </Button>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href="https://discord.gg/QfsG5Kj" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoDiscord} />}
-                >
-                  Discord
+                  Linkedin
                 </Button>
               </Link>
             </ListItem>
@@ -209,7 +192,7 @@ const Home: NextPage = () => {
             </GridItem>
           </SimpleGrid>
 
-          <Box align="center" my={4}>
+          <Box alignItems="center" my={4}>
             <NextLink href="/posts">
               <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
                 Popular posts

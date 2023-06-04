@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import {
-  Box,
+  Flex,
   Heading,
   Text,
   Container,
@@ -15,11 +15,11 @@ const NotFound = () => {
       <Text>The page you&apos;re looking for was not found</Text>
       <Divider my={6} />
 
-      <Box my={6} align="center">
+      <Flex my={6} alignItems="center">
         <NextLink href="/">
           <Button colorScheme="teal">Return to home</Button>
         </NextLink>
-      </Box>
+      </Flex>
     </Container>
   );
 };
