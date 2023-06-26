@@ -10,6 +10,7 @@ export const MainLayout = ({ children, router }) => {
       <Header>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Haessler Leon</title>
+        <link rel="icon" href="/h_blue_light.jfif" />
       </Header>
 
       <Navbar path={router.asPath} />

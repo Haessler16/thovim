@@ -1,4 +1,14 @@
-import { Container, Heading, SimpleGrid, Divider } from '@chakra-ui/react';
+import {
+  Container,
+  Heading,
+  SimpleGrid,
+  Divider,
+  Card,
+  CardBody,
+  CardHeader,
+  UnorderedList,
+  ListItem,
+} from '@chakra-ui/react';
 import { Section } from '../../components/Section';
 
 import { WorkGridItem } from '../../components/GridItem';
@@ -14,11 +24,145 @@ import thumbPichu2 from '../../public/images/works/pichu2_eyecatch.png';
 import thumbFreeDBTagger from '../../public/images/works/freedbtagger_eyecatch.png';
 import thumbAmembo from '../../public/images/works/amembo_eyecatch.png';
 
+const myWorks = [
+  {
+    title: 'Ovmafot',
+    subtitle: 'Frontend',
+    description: ['Wix', 'Wordpress', 'Css'],
+  },
+  {
+    title: 'Ponceleon club',
+    subtitle: 'Frontend',
+    description: ['Hmtl', 'Css', 'Js', 'React'],
+  },
+  {
+    title: 'Wingoo',
+    subtitle: 'Frontend',
+    description: ['React (Next.js)', 'Tailwind', 'React Forms'],
+  },
+  {
+    title: 'Devels',
+    subtitle: 'Full-Stack',
+    description: [
+      'Colaborador en la creación de Venezuela Locations',
+      'Python (FastApi)',
+      'React (Next.js)',
+      'Express.js',
+    ],
+  },
+];
+
+const outstandingWorks = [
+  {
+    title: 'Zumetrics',
+    subtitle: 'Full-Stack',
+    description: [
+      'Creación de PWA con Next.js, Redux y TypeScript.',
+      'Maquetación con Css-Grid, Bootstrap y Styled Components.',
+      'Creación de Backend en Node con Express, GraphQL y MongoDB.',
+      'Implementación de Servicios como Auth0, Vercel, AWS, Heroku, Digital Ocean, GitHub y GitLap.',
+      'Implementación de Test con Mocha, Jest y StoryBook',
+    ],
+  },
+  {
+    title: 'Turpial Development',
+    subtitle: 'Frontend',
+    description: [
+      'Aplicaciones descentralizadas con Angular y React (Next.js).',
+      'Testing con Cypress y Jest.',
+      'Uso de servicios y plataformas Blockchain como Thorchain y Terra.',
+      'Integración con Billeteras como Metamask, Xdefi y Keystore.',
+    ],
+  },
+];
+
 const Works = () => {
   return (
     <ArticleLayout title="Works">
       <Container>
-        <Heading as="h3" fontSize={20} mb={4}>
+        <Section delay={'0.1'}>
+          <Heading as="h2" variant="section-title">
+            Works:
+          </Heading>
+
+          <SimpleGrid columns={[1, 1, 2]} gap={3}>
+            {myWorks.map(({ title, subtitle, description }) => {
+              return (
+                <Card
+                  key={title}
+                  bg="transparent"
+                  borderRadius="lg"
+                  border="1px"
+                  shadow="lg"
+                >
+                  <CardHeader py="1.5" pt="1.5rem">
+                    <Heading size="lg" textAlign="center">
+                      {title}
+                    </Heading>
+
+                    <Heading
+                      size="sm"
+                      textAlign="center"
+                      textDecoration="underline"
+                    >
+                      {subtitle}
+                    </Heading>
+                  </CardHeader>
+
+                  <CardBody py="1.5" pb="1.5rem">
+                    {/* <Text>{description}</Text> */}
+
+                    <UnorderedList px="5">
+                      {description.map((items) => {
+                        return <ListItem key={items}>{items}</ListItem>;
+                      })}
+                    </UnorderedList>
+                  </CardBody>
+                </Card>
+              );
+            })}
+          </SimpleGrid>
+
+          <SimpleGrid columns={1} gap={3} mt={3}>
+            {outstandingWorks.map(({ title, subtitle, description }) => {
+              return (
+                <Card
+                  key={title}
+                  bg="transparent"
+                  borderRadius="lg"
+                  border="1px"
+                  shadow="lg"
+                >
+                  <CardHeader>
+                    <Heading size="lg" textAlign="center">
+                      {title}
+                    </Heading>
+
+                    <Heading
+                      size="sm"
+                      textAlign="center"
+                      textDecoration="underline"
+                    >
+                      {subtitle}
+                    </Heading>
+                  </CardHeader>
+
+                  <CardBody py="1.5" pb="1.5rem">
+                    {/* <Text>{description}</Text> */}
+
+                    <UnorderedList px="5">
+                      {description.map((items) => {
+                        return <ListItem key={items}>{items}</ListItem>;
+                      })}
+                    </UnorderedList>
+                  </CardBody>
+                </Card>
+              );
+            })}
+          </SimpleGrid>
+        </Section>
+
+        {/* <Heading as="h3" fontSize={20} mb={4}>
           Works
         </Heading>
 
@@ -39,7 +183,7 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-          <Section delay={'0.1'}>
+          <Section delay={'0.2'}>
             <WorkGridItem
               id="fourpainters"
               title="The four painters"
@@ -50,7 +194,7 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-          <Section delay={'0.1'}>
+          <Section delay={'0.3'}>
             <WorkGridItem id="menkiki" thumbnail={thumbMenkiki} title="Menkiki">
               An app that suggests ramen(noodle) shops based on a given photo of
               the ramen you want to eat
@@ -58,7 +202,7 @@ const Works = () => {
           </Section>
         </SimpleGrid>
 
-        <Section delay={'0.2'}>
+        <Section delay={'0.3'}>
           <Divider my={6} />
 
           <Heading as="h3" fontSize={20} mb={4}>
@@ -116,7 +260,7 @@ const Works = () => {
               Windows
             </WorkGridItem>
           </Section>
-        </SimpleGrid>
+        </SimpleGrid> */}
       </Container>
     </ArticleLayout>
   );
