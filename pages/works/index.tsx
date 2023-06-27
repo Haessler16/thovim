@@ -14,18 +14,14 @@ import { Section } from '../../components/Section';
 import { WorkGridItem } from '../../components/GridItem';
 import { ArticleLayout } from '../../layouts/Article';
 
-import thumbInkdrop from '../../public/images/works/inkdrop_eyecatch.png';
-import thumbWalknote from '../../public/images/works/walknote_eyecatch.png';
-import thumbFourPainters from '../../public/images/works/the-four-painters_eyecatch.jpg';
-import thumbMenkiki from '../../public/images/works/menkiki_eyecatch.png';
-import thumbModeTokyo from '../../public/images/works/modetokyo_eyecatch.png';
-import thumbStyly from '../../public/images/works/styly_eyecatch.png';
 import thumbPichu2 from '../../public/images/works/pichu2_eyecatch.png';
 import thumbFreeDBTagger from '../../public/images/works/freedbtagger_eyecatch.png';
 import thumbAmembo from '../../public/images/works/amembo_eyecatch.png';
 import thumbDevels from '../../public/images/works/devels.png';
 import thumbZume from '../../public/images/works/zumed.png';
 import thumbDcf from '../../public/images/works/decentralfi.png';
+import thumbMarvel from '../../public/images/works/marvel.jpg';
+import thumbSimonSays from '../../public/images/works/simon-says.png';
 
 const myWorks = [
   {
@@ -85,7 +81,7 @@ const Works = () => {
       <Container>
         <Section delay={'0.1'}>
           <Heading as="h2" variant="section-title">
-            Works:
+            Experience:
           </Heading>
 
           <SimpleGrid columns={[1, 1, 2]} gap={3}>
@@ -170,19 +166,27 @@ const Works = () => {
         </Heading>
 
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <Section>
-            <WorkGridItem id="decentralfi" title="Inkdrop" thumbnail={thumbDcf}>
+          <Section delay={'0.2'}>
+            <WorkGridItem
+              id="decentralfi"
+              title="DecentralFi"
+              thumbnail={thumbDcf}
+            >
               A markdow note-taking app
             </WorkGridItem>
           </Section>
 
-          <Section>
-            <WorkGridItem id="walknote" title="Walknote" thumbnail={thumbZume}>
+          <Section delay={'0.3'}>
+            <WorkGridItem
+              id="zumetrics"
+              title="Zumetrics"
+              thumbnail={thumbZume}
+            >
               Music recommendation app for iOS
             </WorkGridItem>
           </Section>
 
-          <Section delay={'0.2'}>
+          {/* <Section >
             <WorkGridItem
               id="fourpainters"
               title="The four painters"
@@ -193,12 +197,12 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-          <Section delay={'0.3'}>
+          <Section >
             <WorkGridItem id="menkiki" thumbnail={thumbMenkiki} title="Menkiki">
               An app that suggests ramen(noodle) shops based on a given photo of
               the ramen you want to eat
             </WorkGridItem>
-          </Section>
+          </Section> */}
         </SimpleGrid>
 
         <Section delay={'0.3'}>
@@ -220,11 +224,11 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-          <Section delay={'0.3'}>
+          {/* <Section delay={'0.3'}>
             <WorkGridItem id="styly" thumbnail={thumbStyly} title="Styly">
               A VR Creative tools for fashion brands
             </WorkGridItem>
-          </Section>
+          </Section> */}
         </SimpleGrid>
 
         <Section delay={'0.4'}>
@@ -238,28 +242,30 @@ const Works = () => {
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
           <Section delay={'0.5'}>
             <WorkGridItem
-              id="pichu2"
-              thumbnail={thumbPichu2}
-              title="Pichu*Pichu"
+              id="marvel-angular"
+              thumbnail={thumbMarvel}
+              title="Marvel-Angular"
             >
               Twitter client app for iPhone Safari
             </WorkGridItem>
           </Section>
+
           <Section delay={'0.5'}>
             <WorkGridItem
-              id="freedbtagger"
-              thumbnail={thumbFreeDBTagger}
-              title="freeDBTagger"
+              id="simon-dice"
+              thumbnail={thumbSimonSays}
+              title="Simon dice"
             >
               Automatic audio file tagging tool using FreeDB for Windows
             </WorkGridItem>
           </Section>
-          <Section delay={'0.6'}>
+
+          {/* <Section delay={'0.6'}>
             <WorkGridItem id="amembo" thumbnail={thumbAmembo} title="Amembo">
               P2P private file sharing tool with MSN Messenger integration for
               Windows
             </WorkGridItem>
-          </Section>
+          </Section> */}
         </SimpleGrid>
       </Container>
     </ArticleLayout>
