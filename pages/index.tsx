@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import NextLink from 'next/link';
+
 import {
   Container,
   Box,
@@ -13,21 +14,22 @@ import {
   ListItem,
   Icon,
 } from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 
+// COMPONENTS
 import { Section } from '../components/Section';
 import { Paragraph } from '../components/Paragraph';
-
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import { BioSection, BioYear } from '../components/Bio';
-
-import { ArticleLayout } from '../layouts/Article';
-
-import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
-
 import { GridItem } from '../components/GridItem';
 
+// LAYOUTS
+import { ArticleLayout } from '../layouts/Article';
+
+// ICONS
+import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
 import thumbYouTube from '../public/images/links/youtube.png';
 import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png';
+import thumbDecentral from '../public/images/works/last_preview.jpg';
 
 const Home: NextPage = () => {
   return (
@@ -42,9 +44,15 @@ const Home: NextPage = () => {
         >
           Hello, I´m a full-stack developer based in Venezuela!
         </Box>
+
         {/* DESCRIPTION AND PHOTO */}
-        <Box display={{ md: 'flex' }}>
-          <Box flexGrow={1}>
+        <Box as="section" display={{ md: 'flex' }}>
+          <Box
+            flexGrow={1}
+            display="flex"
+            flexDir="column"
+            justifyContent="center"
+          >
             <Heading as="h2" variant="page-title">
               Haessler León
             </Heading>
@@ -62,7 +70,7 @@ const Home: NextPage = () => {
               borderColor="whiteAlpha.800"
               borderWidth={2}
               borderStyle="solid"
-              maxWidth="100px"
+              maxWidth="130px"
               display="inline-block"
               borderRadius="full"
               src="/images/hae.jpeg"
@@ -78,14 +86,22 @@ const Home: NextPage = () => {
           </Heading>
 
           <Paragraph>
-            I´m a full-stack developer based in Venezuela. I´m a passionate
-            developer, designer and artist. I´m currently working as a
-            freelancer.
-            <NextLink href="/work/inkdrop">
-              <br />
-              <br />
+            In more than 5 years I have been able to work with various
+            JavaScript and Python technologies both in Frontend and Backend,
+            especially with React.js, Angular and Node.js.
+          </Paragraph>
+
+          <Paragraph>
+            I have specialized in Web 3 bone technologies, in the creation of
+            interfaces for the management of crypto currencies, blockchain and
+            virtual wallets. At the same time, I gained experience in the
+            creation of complex dashboards that allow the visualization of data
+            through graphs.
+            <br />
+            <br />
+            <Link as={NextLink} href="/work/decentralfi" color="teal.200">
               See my work
-            </NextLink>
+            </Link>
           </Paragraph>
 
           <Box alignItems="center" my={4}>
@@ -124,7 +140,7 @@ const Home: NextPage = () => {
           </Heading>
 
           <Paragraph>
-            Art, Music, Drawing, Photography and Machine Learning
+            Comics, Drawing, Music, Photography and Machine Learning
           </Paragraph>
         </Section>
 
@@ -176,29 +192,30 @@ const Home: NextPage = () => {
           </List>
 
           <SimpleGrid columns={[1, 2, 2]} gap={6}>
-            <GridItem
+            {/* <GridItem
               href="https://www.youtube.com/devaslife"
               title="Dev as Life"
               thumbnail={thumbYouTube}
             >
               My YouTube channel
-            </GridItem>
+            </GridItem> */}
+
             <GridItem
-              href="https://www.inkdrop.app/"
-              title="Inkdrop"
-              thumbnail={thumbInkdrop}
+              href="https://decentralfi.io/"
+              title="DecentralFi"
+              thumbnail={thumbDecentral}
             >
-              A Markdown note-taking app
+              A crypto decentralize app
             </GridItem>
           </SimpleGrid>
 
-          <Box alignItems="center" my={4}>
+          {/* <Box my={4}>
             <NextLink href="/posts">
               <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
                 Popular posts
               </Button>
             </NextLink>
-          </Box>
+          </Box> */}
         </Section>
       </Container>
     </ArticleLayout>

@@ -18,8 +18,9 @@ const InkDrop = () => {
         <List ml={4} my={4}>
           <ListItem>
             <Meta>Website</Meta>
-            <Link href="https://decentralfi.io/">
-              https://decentralfi.io/ <ExternalLinkIcon mx="2px" />
+            <Link href="https://venezuela-locations-website.vercel.app/">
+              https://venezuela-locations-website.vercel.app/{' '}
+              <ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
           <ListItem>

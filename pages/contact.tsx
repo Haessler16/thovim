@@ -14,6 +14,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import emailjs from '@emailjs/browser';
+import { EmailIcon } from '@chakra-ui/icons';
 
 const Contact: NextPage = () => {
   const toast = useToast();
@@ -86,7 +87,11 @@ const Contact: NextPage = () => {
 
               <Textarea placeholder="Message" name="message" required />
               <Center mt="6" w="full">
-                <Button colorScheme="teal" type="submit">
+                <Button
+                  leftIcon={<EmailIcon />}
+                  colorScheme="teal"
+                  type="submit"
+                >
                   Send
                 </Button>
               </Center>

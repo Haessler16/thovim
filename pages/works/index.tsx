@@ -23,6 +23,9 @@ import thumbStyly from '../../public/images/works/styly_eyecatch.png';
 import thumbPichu2 from '../../public/images/works/pichu2_eyecatch.png';
 import thumbFreeDBTagger from '../../public/images/works/freedbtagger_eyecatch.png';
 import thumbAmembo from '../../public/images/works/amembo_eyecatch.png';
+import thumbDevels from '../../public/images/works/devels.png';
+import thumbZume from '../../public/images/works/zumed.png';
+import thumbDcf from '../../public/images/works/decentralfi.png';
 
 const myWorks = [
   {
@@ -162,23 +165,19 @@ const Works = () => {
           </SimpleGrid>
         </Section>
 
-        {/* <Heading as="h3" fontSize={20} mb={4}>
+        <Heading as="h3" fontSize={20} mb={4}>
           Works
         </Heading>
 
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
           <Section>
-            <WorkGridItem id="inkdrop" title="Inkdrop" thumbnail={thumbInkdrop}>
+            <WorkGridItem id="decentralfi" title="Inkdrop" thumbnail={thumbDcf}>
               A markdow note-taking app
             </WorkGridItem>
           </Section>
 
           <Section>
-            <WorkGridItem
-              id="walknote"
-              title="Walknote"
-              thumbnail={thumbWalknote}
-            >
+            <WorkGridItem id="walknote" title="Walknote" thumbnail={thumbZume}>
               Music recommendation app for iOS
             </WorkGridItem>
           </Section>
@@ -213,13 +212,14 @@ const Works = () => {
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
           <Section delay={'0.3'}>
             <WorkGridItem
-              id="modetokyo"
-              thumbnail={thumbModeTokyo}
-              title="mode.tokyo"
+              id="venezuela_locations"
+              thumbnail={thumbDevels}
+              title="Devels - Venezuela locations"
             >
               The mode magazine for understanding to personally enjoy Japan
             </WorkGridItem>
           </Section>
+
           <Section delay={'0.3'}>
             <WorkGridItem id="styly" thumbnail={thumbStyly} title="Styly">
               A VR Creative tools for fashion brands
@@ -260,7 +260,7 @@ const Works = () => {
               Windows
             </WorkGridItem>
           </Section>
-        </SimpleGrid> */}
+        </SimpleGrid>
       </Container>
     </ArticleLayout>
   );
