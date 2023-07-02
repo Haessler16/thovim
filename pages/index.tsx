@@ -27,8 +27,6 @@ import { ArticleLayout } from '../layouts/Article';
 
 // ICONS
 import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
-import thumbYouTube from '../public/images/links/youtube.png';
-import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png';
 import thumbDecentral from '../public/images/works/last_preview.jpg';
 
 const Home: NextPage = () => {

@@ -38,8 +38,8 @@ const InkDrop = () => {
             </Link>
           </ListItem>
         </List>
-        <WorkImage src="/images/works/inkdrop_01.png" alt="Inkdrop" />
-        <WorkImage src="/images/works/inkdrop_02.png" alt="Inkdrop" />
+        <WorkImage src="/images/works/marvel-angular-ch.png" alt="Chracter" />
+        <WorkImage src="/images/works/marvel-angular-comics.png" alt="Comics" />
       </Container>
     </ArticleLayout>
   );

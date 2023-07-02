@@ -43,15 +43,24 @@ const myWorks = [
     title: 'Devels',
     subtitle: 'Full-Stack',
     description: [
-      'Colaborador en la creación de Venezuela Locations',
+      'Co-creador de Venezuela Locations',
       'Python (FastApi)',
       'React (Next.js)',
-      'Express.js',
     ],
   },
 ];
 
 const outstandingWorks = [
+  {
+    title: 'Turpial Development',
+    subtitle: 'Frontend',
+    description: [
+      'Aplicaciones descentralizadas con Angular y React (Next.js).',
+      'Testing con Cypress y Jest.',
+      'Uso de servicios y plataformas Blockchain como Thorchain y Terra.',
+      'Integración con Billeteras como Metamask, Xdefi y Keystore.',
+    ],
+  },
   {
     title: 'Zumetrics',
     subtitle: 'Full-Stack',
@@ -63,66 +72,124 @@ const outstandingWorks = [
       'Implementación de Test con Mocha, Jest y StoryBook',
     ],
   },
-  {
-    title: 'Turpial Development',
-    subtitle: 'Frontend',
-    description: [
-      'Aplicaciones descentralizadas con Angular y React (Next.js).',
-      'Testing con Cypress y Jest.',
-      'Uso de servicios y plataformas Blockchain como Thorchain y Terra.',
-      'Integración con Billeteras como Metamask, Xdefi y Keystore.',
-    ],
-  },
 ];
 
 const Works = () => {
   return (
     <ArticleLayout title="Works">
       <Container>
+        <Heading as="h3" fontSize={20} mb={4} variant="section-title">
+          Works
+        </Heading>
+
+        <SimpleGrid columns={[1, 1, 2]} gap={6}>
+          <Section delay={'0.2'}>
+            <WorkGridItem
+              id="decentralfi"
+              title="DecentralFi"
+              thumbnail={thumbDcf}
+            >
+              A decentralized web application for cryptocurrencies.
+            </WorkGridItem>
+          </Section>
+
+          <Section delay={'0.3'}>
+            <WorkGridItem
+              id="zumetrics"
+              title="Zumetrics"
+              thumbnail={thumbZume}
+            >
+              A web app to display social media metrics.
+            </WorkGridItem>
+          </Section>
+
+          {/* <Section >
+            <WorkGridItem
+              id="fourpainters"
+              title="The four painters"
+              thumbnail={thumbFourPainters}
+            >
+              A video work generated with deep learning, imitating famous four
+              painters like Van Gogh
+            </WorkGridItem>
+          </Section>
+
+          <Section >
+            <WorkGridItem id="menkiki" thumbnail={thumbMenkiki} title="Menkiki">
+              An app that suggests ramen(noodle) shops based on a given photo of
+              the ramen you want to eat
+            </WorkGridItem>
+          </Section> */}
+        </SimpleGrid>
+
+        <Section delay={'0.3'}>
+          <Divider my={6} />
+
+          <Heading as="h3" fontSize={20} mb={4} variant="section-title">
+            Collaborations
+          </Heading>
+        </Section>
+
+        <SimpleGrid columns={[1, 1, 2]} gap={6}>
+          <Section delay={'0.3'}>
+            <WorkGridItem
+              id="venezuela_locations"
+              thumbnail={thumbDevels}
+              title="Devels - Venezuela locations"
+            >
+              An api to get the different locations in Venezuela.
+            </WorkGridItem>
+          </Section>
+
+          {/* <Section delay={'0.3'}>
+            <WorkGridItem id="styly" thumbnail={thumbStyly} title="Styly">
+              A VR Creative tools for fashion brands
+            </WorkGridItem>
+          </Section> */}
+        </SimpleGrid>
+
+        <Section delay={'0.4'}>
+          <Divider my={6} />
+
+          <Heading as="h3" fontSize={20} mb={4} variant="section-title">
+            Old works
+          </Heading>
+        </Section>
+
+        <SimpleGrid columns={[1, 1, 2]} gap={6}>
+          <Section delay={'0.5'}>
+            <WorkGridItem
+              id="marvel-angular"
+              thumbnail={thumbMarvel}
+              title="Marvel-Angular"
+            >
+              An app to see characters, comics, series from Marvel.
+            </WorkGridItem>
+          </Section>
+
+          <Section delay={'0.5'}>
+            <WorkGridItem
+              id="simon-dice"
+              thumbnail={thumbSimonSays}
+              title="Simon dice"
+            >
+              Web page to play simon says 😄.
+            </WorkGridItem>
+          </Section>
+
+          {/* <Section delay={'0.6'}>
+            <WorkGridItem id="amembo" thumbnail={thumbAmembo} title="Amembo">
+              P2P private file sharing tool with MSN Messenger integration for
+              Windows
+            </WorkGridItem>
+          </Section> */}
+        </SimpleGrid>
+
         <Section delay={'0.1'}>
           <Heading as="h2" variant="section-title">
             Experience:
           </Heading>
-
-          <SimpleGrid columns={[1, 1, 2]} gap={3}>
-            {myWorks.map(({ title, subtitle, description }) => {
-              return (
-                <Card
-                  key={title}
-                  bg="transparent"
-                  borderRadius="lg"
-                  border="1px"
-                  shadow="lg"
-                >
-                  <CardHeader py="1.5" pt="1.5rem">
-                    <Heading size="lg" textAlign="center">
-                      {title}
-                    </Heading>
-
-                    <Heading
-                      size="sm"
-                      textAlign="center"
-                      textDecoration="underline"
-                    >
-                      {subtitle}
-                    </Heading>
-                  </CardHeader>
-
-                  <CardBody py="1.5" pb="1.5rem">
-                    {/* <Text>{description}</Text> */}
-
-                    <UnorderedList px="5">
-                      {description.map((items) => {
-                        return <ListItem key={items}>{items}</ListItem>;
-                      })}
-                    </UnorderedList>
-                  </CardBody>
-                </Card>
-              );
-            })}
-          </SimpleGrid>
-
-          <SimpleGrid columns={1} gap={3} mt={3}>
+          <SimpleGrid columns={1} gap={3}>
             {outstandingWorks.map(({ title, subtitle, description }) => {
               return (
                 <Card
@@ -159,114 +226,45 @@ const Works = () => {
               );
             })}
           </SimpleGrid>
+
+          <SimpleGrid columns={[1, 1, 2]} gap={3} mt={3}>
+            {myWorks.map(({ title, subtitle, description }) => {
+              return (
+                <Card
+                  key={title}
+                  bg="transparent"
+                  borderRadius="lg"
+                  border="1px"
+                  shadow="lg"
+                >
+                  <CardHeader py="1.5" pt="1.5rem">
+                    <Heading size="lg" textAlign="center">
+                      {title}
+                    </Heading>
+
+                    <Heading
+                      size="sm"
+                      textAlign="center"
+                      textDecoration="underline"
+                    >
+                      {subtitle}
+                    </Heading>
+                  </CardHeader>
+
+                  <CardBody py="1.5" pb="1.5rem">
+                    {/* <Text>{description}</Text> */}
+
+                    <UnorderedList px="5">
+                      {description.map((items) => {
+                        return <ListItem key={items}>{items}</ListItem>;
+                      })}
+                    </UnorderedList>
+                  </CardBody>
+                </Card>
+              );
+            })}
+          </SimpleGrid>
         </Section>
-
-        <Heading as="h3" fontSize={20} mb={4}>
-          Works
-        </Heading>
-
-        <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <Section delay={'0.2'}>
-            <WorkGridItem
-              id="decentralfi"
-              title="DecentralFi"
-              thumbnail={thumbDcf}
-            >
-              A markdow note-taking app
-            </WorkGridItem>
-          </Section>
-
-          <Section delay={'0.3'}>
-            <WorkGridItem
-              id="zumetrics"
-              title="Zumetrics"
-              thumbnail={thumbZume}
-            >
-              Music recommendation app for iOS
-            </WorkGridItem>
-          </Section>
-
-          {/* <Section >
-            <WorkGridItem
-              id="fourpainters"
-              title="The four painters"
-              thumbnail={thumbFourPainters}
-            >
-              A video work generated with deep learning, imitating famous four
-              painters like Van Gogh
-            </WorkGridItem>
-          </Section>
-
-          <Section >
-            <WorkGridItem id="menkiki" thumbnail={thumbMenkiki} title="Menkiki">
-              An app that suggests ramen(noodle) shops based on a given photo of
-              the ramen you want to eat
-            </WorkGridItem>
-          </Section> */}
-        </SimpleGrid>
-
-        <Section delay={'0.3'}>
-          <Divider my={6} />
-
-          <Heading as="h3" fontSize={20} mb={4}>
-            Collaborations
-          </Heading>
-        </Section>
-
-        <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <Section delay={'0.3'}>
-            <WorkGridItem
-              id="venezuela_locations"
-              thumbnail={thumbDevels}
-              title="Devels - Venezuela locations"
-            >
-              The mode magazine for understanding to personally enjoy Japan
-            </WorkGridItem>
-          </Section>
-
-          {/* <Section delay={'0.3'}>
-            <WorkGridItem id="styly" thumbnail={thumbStyly} title="Styly">
-              A VR Creative tools for fashion brands
-            </WorkGridItem>
-          </Section> */}
-        </SimpleGrid>
-
-        <Section delay={'0.4'}>
-          <Divider my={6} />
-
-          <Heading as="h3" fontSize={20} mb={4}>
-            Old works
-          </Heading>
-        </Section>
-
-        <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <Section delay={'0.5'}>
-            <WorkGridItem
-              id="marvel-angular"
-              thumbnail={thumbMarvel}
-              title="Marvel-Angular"
-            >
-              Twitter client app for iPhone Safari
-            </WorkGridItem>
-          </Section>
-
-          <Section delay={'0.5'}>
-            <WorkGridItem
-              id="simon-dice"
-              thumbnail={thumbSimonSays}
-              title="Simon dice"
-            >
-              Automatic audio file tagging tool using FreeDB for Windows
-            </WorkGridItem>
-          </Section>
-
-          {/* <Section delay={'0.6'}>
-            <WorkGridItem id="amembo" thumbnail={thumbAmembo} title="Amembo">
-              P2P private file sharing tool with MSN Messenger integration for
-              Windows
-            </WorkGridItem>
-          </Section> */}
-        </SimpleGrid>
       </Container>
     </ArticleLayout>
   );

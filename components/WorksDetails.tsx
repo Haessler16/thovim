@@ -21,8 +21,10 @@ export const Title = ({ children }) => {
   );
 };
 
-export const WorkImage = ({ src, alt }) => {
-  return <Image borderRadius="lg" w="full" src={src} alt={alt} mb={4} />;
+export const WorkImage = ({ src, alt, h = 'auto' }) => {
+  return (
+    <Image borderRadius="lg" w="full" src={src} alt={alt} mb={4} height={h} />
+  );
 };
 
 export const Meta = ({ children }) => {

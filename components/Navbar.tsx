@@ -80,16 +80,16 @@ export const Navbar = (props) => {
             Works
           </LinkItem>
 
-          <LinkItem href="/posts" path={path}>
+          {/* <LinkItem href="/posts" path={path}>
             Posts
-          </LinkItem>
+          </LinkItem> */}
 
           <LinkItem href="/contact" path={path}>
             Contact
           </LinkItem>
         </Stack>
 
-        <Box flex={1} alignItems="right">
+        <Box alignItems="right">
           <ThemeToggleButton />
 
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
@@ -102,20 +102,25 @@ export const Navbar = (props) => {
               />
 
               <MenuList>
-                {/* <NextLink href="/" passHref>
-                  <MenuItem as={Link}>About</MenuItem>
-                </NextLink>
-                <NextLink href="/works" passHref>
-                  <MenuItem as={Link}>Works</MenuItem>
-                </NextLink>
-                <NextLink href="/post" passHref>
-                  <MenuItem as={Link}>Post</MenuItem>
-                </NextLink> */}
+                <MenuItem>
+                  <Link href="/about" as={NextLink}>
+                    About
+                  </Link>
+                </MenuItem>
 
-                <MenuItem
-                  as={Link}
-                  href="https://github.com/craftzdog/craftzdog-homepage"
-                >
+                <MenuItem>
+                  <Link href="/works" as={NextLink}>
+                    Works
+                  </Link>
+                </MenuItem>
+
+                <MenuItem>
+                  <Link href="/contact" as={NextLink}>
+                    Contact
+                  </Link>
+                </MenuItem>
+
+                <MenuItem as={Link} href="https://github.com/Haessler16/thovim">
                   View Source
                 </MenuItem>
               </MenuList>

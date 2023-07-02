@@ -6,10 +6,10 @@ import { ArticleLayout } from '../../layouts/Article';
 
 const InkDrop = () => {
   return (
-    <ArticleLayout title="inkdrop">
+    <ArticleLayout title="Venezuela Location">
       <Container>
         <Title>
-          Inkdrop <Badge>2016</Badge>
+          Venezuela Location <Badge>2023</Badge>
         </Title>
         <Paragraph>
           A Markdown note-taking app with 100+ plugins, cross-platform and
@@ -23,14 +23,17 @@ const InkDrop = () => {
               <ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
+
           <ListItem>
             <Meta>Platform</Meta>
             <span>Windows/macOS/Linux/iOS/Android</span>
           </ListItem>
+
           <ListItem>
             <Meta>Stack</Meta>
-            <span>NodeJS, Electron, React Native</span>
+            <span>React, Next.js, Turporepo</span>
           </ListItem>
+
           <ListItem>
             <Meta>Blogpost</Meta>
             <Link href="https://blog.inkdrop.app/how-ive-attracted-the-first-500-paid-users-for-my-saas-that-costs-5-mo-7a5b94b8e820">
@@ -39,8 +42,9 @@ const InkDrop = () => {
             </Link>
           </ListItem>
         </List>
-        <WorkImage src="/images/works/inkdrop_01.png" alt="Inkdrop" />
-        <WorkImage src="/images/works/inkdrop_02.png" alt="Inkdrop" />
+
+        <WorkImage src="/images/works/ven-location.png" alt="Logo" />
+        <WorkImage src="/images/works/ven-location-dash.png" alt="Login" />
       </Container>
     </ArticleLayout>
   );
