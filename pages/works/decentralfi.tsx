@@ -13,8 +13,10 @@ const InkDrop = () => {
         </Title>
 
         <Paragraph>
-          A Markdown note-taking app with 100+ plugins, cross-platform and
-          encrypted data sync support. The life-time revenue is more than $200k.
+          Decentral is a decentralized web application, with the objective of
+          carrying out transactions with cryptocurrency, creating and managing
+          wallets, viewing market values and managing your liquidity on the
+          thorchain platform.
         </Paragraph>
 
         <List ml={4} my={4}>
@@ -27,7 +29,7 @@ const InkDrop = () => {
 
           <ListItem>
             <Meta>Platform</Meta>
-            <span>Web/Movil/Desktop</span>
+            <span>Web / Movil / Desktop</span>
           </ListItem>
 
           <ListItem>

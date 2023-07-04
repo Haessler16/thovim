@@ -6,15 +6,18 @@ import { ArticleLayout } from '../../layouts/Article';
 
 const InkDrop = () => {
   return (
-    <ArticleLayout title="inkdrop">
+    <ArticleLayout title="Marvel Angular">
       <Container>
         <Title>
-          MArvel Angular <Badge>2020</Badge>
+          Marvel Angular <Badge>2020</Badge>
         </Title>
+
         <Paragraph>
-          A Markdown note-taking app with 100+ plugins, cross-platform and
-          encrypted data sync support. The life-time revenue is more than $200k.
+          I am a geek, so you should know that I would do this page, Marvel
+          Angular is a page made with Angular where I show all the Marvel API
+          data. For example characters, series, comics and authors
         </Paragraph>
+
         <List ml={4} my={4}>
           <ListItem>
             <Meta>Website</Meta>
@@ -22,21 +25,24 @@ const InkDrop = () => {
               https://marvel-angular.vercel.app/ <ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
+
           <ListItem>
             <Meta>Platform</Meta>
-            <span>Windows/macOS/Linux/iOS/Android</span>
+            <span>Web / Mobile</span>
           </ListItem>
+
           <ListItem>
             <Meta>Stack</Meta>
-            <span>NodeJS, Electron, React Native</span>
+            <span>Angular, Material, SASS, Marvel API</span>
           </ListItem>
-          <ListItem>
+
+          {/* <ListItem>
             <Meta>Blogpost</Meta>
             <Link href="https://blog.inkdrop.app/how-ive-attracted-the-first-500-paid-users-for-my-saas-that-costs-5-mo-7a5b94b8e820">
               How I’ve Attracted The First 500 Paid Users For My SaaS That Costs
               $5/mo <ExternalLinkIcon mx="2px" />
             </Link>
-          </ListItem>
+          </ListItem> */}
         </List>
         <WorkImage src="/images/works/marvel-angular-ch.png" alt="Chracter" />
         <WorkImage src="/images/works/marvel-angular-comics.png" alt="Comics" />

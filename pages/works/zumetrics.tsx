@@ -13,8 +13,8 @@ const InkDrop = () => {
         </Title>
 
         <Paragraph>
-          A Markdown note-taking app with 100+ plugins, cross-platform and
-          encrypted data sync support. The life-time revenue is more than $200k.
+          Zumetrics was an application designed to view and manage all the
+          metrics of your social networks.
         </Paragraph>
 
         <List ml={4} my={4}>
@@ -32,7 +32,9 @@ const InkDrop = () => {
 
           <ListItem>
             <Meta>Stack</Meta>
-            <span>React, NextJS, NodeJS, Express, GraphQl, MongoDB</span>
+            <span>
+              React, NextJS, NodeJS, Express.JS, GraphQl, MongoDB, Storybook
+            </span>
           </ListItem>
 
           {/* <ListItem>
