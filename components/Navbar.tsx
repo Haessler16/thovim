@@ -40,6 +40,7 @@ const LinkItem = ({ href, path, children }) => {
 
 export const Navbar = (props) => {
   const { path } = props;
+
   return (
     <Box
       position="fixed"
@@ -102,25 +103,22 @@ export const Navbar = (props) => {
               />
 
               <MenuList>
-                <MenuItem>
-                  <Link href="/about" as={NextLink}>
-                    About
-                  </Link>
+                <MenuItem as={NextLink} href="/about">
+                  About
                 </MenuItem>
 
-                <MenuItem>
-                  <Link href="/works" as={NextLink}>
-                    Works
-                  </Link>
+                <MenuItem href="/works" as={NextLink}>
+                  Works
                 </MenuItem>
 
-                <MenuItem>
-                  <Link href="/contact" as={NextLink}>
-                    Contact
-                  </Link>
+                <MenuItem href="/contact" as={NextLink}>
+                  Contact
                 </MenuItem>
 
-                <MenuItem as={Link} href="https://github.com/Haessler16/thovim">
+                <MenuItem
+                  as={NextLink}
+                  href="https://github.com/Haessler16/thovim"
+                >
                   View Source
                 </MenuItem>
               </MenuList>
