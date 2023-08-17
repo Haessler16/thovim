@@ -53,23 +53,23 @@ const myWorks = [
 const outstandingWorks = [
   {
     title: 'Turpial Development',
-    subtitle: 'Frontend',
+    subtitle: 'Frontend / Web 3 Developer',
     description: [
-      'Aplicaciones descentralizadas con Angular y React (Next.js).',
-      'Testing con Cypress y Jest.',
-      'Uso de servicios y plataformas Blockchain como Thorchain y Terra.',
-      'Integración con Billeteras como Metamask, Xdefi y Keystore.',
+      'Creation of decentralized applications with Angular, React (Next.js) and Tailwind.',
+      'Testing with Cypress, Jest and Docker implementation.',
+      'Use of Blockchain services and platforms such as Thorchain, Terra and Telegram bots´ creation.',
+      'Integration with Wallets such as Metamask, Xdefi and Keystore.',
     ],
   },
   {
     title: 'Zumetrics',
     subtitle: 'Full-Stack',
     description: [
-      'Creación de PWA con Next.js, Redux y TypeScript.',
-      'Maquetación con Css-Grid, Bootstrap y Styled Components.',
-      'Creación de Backend en Node con Express, GraphQL y MongoDB.',
-      'Implementación de Servicios como Auth0, Vercel, AWS, Heroku, Digital Ocean, GitHub y GitLap.',
-      'Implementación de Test con Mocha, Jest y StoryBook',
+      'PWA creation with Next.js, Redux and TypeScript.',
+      'Layouts with Css-Grid, Bootstrap, Styled Components and Graphs with Chart.js, D3 and Amcharts.',
+      'Backend creation in Node with Express, GraphQL and MongoDB.',
+      'Implementation of Services such as Auth0, Vercel, AWS, Heroku, Digital Ocean, GitHub and GitLap.',
+      'Test implementation with Mocha, Jest and StoryBook',
     ],
   },
 ];

@@ -66,8 +66,8 @@ export const Navbar = (props) => {
         </Flex>
 
         <Stack
-          direction={{ base: 'column', md: 'row' }}
           display={{ base: 'none', md: 'flex' }}
+          direction={{ base: 'column', md: 'row' }}
           width={{ base: 'full', md: 'auto' }}
           alignItems="center"
           flexGrow={1}
@@ -94,7 +94,7 @@ export const Navbar = (props) => {
           <ThemeToggleButton />
 
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-            <Menu>
+            <Menu isLazy={true}>
               <MenuButton
                 as={IconButton}
                 icon={<HamburgerIcon />}
@@ -103,21 +103,37 @@ export const Navbar = (props) => {
               />
 
               <MenuList>
-                <MenuItem as={NextLink} href="/about">
+                <MenuItem
+                  as={NextLink}
+                  href="/about"
+                  _active={{ bgColor: 'transparent' }}
+                  bg={path === '/about' ? 'whiteAlpha.200' : 'inherit'}
+                >
                   About
                 </MenuItem>
 
-                <MenuItem href="/works" as={NextLink}>
+                <MenuItem
+                  href="/works"
+                  as={NextLink}
+                  _active={{ bgColor: 'transparent' }}
+                  bgColor={path === '/works' ? 'whiteAlpha.200' : undefined}
+                >
                   Works
                 </MenuItem>
 
-                <MenuItem href="/contact" as={NextLink}>
+                <MenuItem
+                  href="/contact"
+                  as={NextLink}
+                  _active={{ bgColor: 'transparent' }}
+                  bgColor={path === '/contact' ? 'whiteAlpha.200' : undefined}
+                >
                   Contact
                 </MenuItem>
 
                 <MenuItem
                   as={NextLink}
                   href="https://github.com/Haessler16/thovim"
+                  _active={{ bgColor: 'transparent' }}
                 >
                   View Source
                 </MenuItem>
