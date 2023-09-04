@@ -6,13 +6,13 @@ import {
   Link,
   Stack,
   Heading,
-  Flex,
   Menu,
   MenuItem,
   MenuList,
   MenuButton,
   IconButton,
   useColorModeValue,
+  Flex,
 } from '@chakra-ui/react';
 
 import { HamburgerIcon } from '@chakra-ui/icons';
@@ -30,8 +30,9 @@ const LinkItem = ({ href, path, children }) => {
       href={href}
       bg={active ? activeBg : undefined}
       color={active ? activeColor : inactiveColor}
-      borderRadius="md"
-      p={1}
+      borderRadius="full"
+      py={1}
+      px={2}
     >
       {children}
     </Link>
@@ -52,95 +53,99 @@ export const Navbar = (props) => {
       {...props}
     >
       <Container
-        display="flex"
         p={2}
+        display="flex"
         maxW="container.md"
         flexWrap="wrap"
         alignItems="center"
         justifyContent="space-between"
       >
-        <Flex align="center" mr={5}>
-          <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-            <Logo />
-          </Heading>
-        </Flex>
+        <Heading as="h1" size="lg" letterSpacing={'tighter'}>
+          <Logo />
+        </Heading>
 
-        <Stack
-          display={{ base: 'none', md: 'flex' }}
-          direction={{ base: 'column', md: 'row' }}
-          width={{ base: 'full', md: 'auto' }}
-          alignItems="center"
-          flexGrow={1}
-          mt={{ base: 4, nmd: 0 }}
-        >
-          <LinkItem href="/about" path={path}>
-            About
-          </LinkItem>
+        <Flex as="section" gap={2}>
+          <Stack
+            display={{ base: 'none', md: 'flex' }}
+            direction={{ base: 'column', md: 'row' }}
+            width={{ base: 'full', md: 'auto' }}
+            alignItems="center"
+            mt={{ base: 4, md: 0 }}
+            fontSize="md"
+          >
+            <LinkItem href="/about" path={path}>
+              About
+            </LinkItem>
 
-          <LinkItem href="/works" path={path}>
-            Works
-          </LinkItem>
+            <LinkItem href="/works" path={path}>
+              Works
+            </LinkItem>
 
-          {/* <LinkItem href="/posts" path={path}>
+            {/* <LinkItem href="/posts" path={path}>
             Posts
           </LinkItem> */}
 
-          <LinkItem href="/contact" path={path}>
-            Contact
-          </LinkItem>
-        </Stack>
+            <LinkItem href="/contact" path={path}>
+              Contact
+            </LinkItem>
+          </Stack>
 
-        <Box alignItems="right">
-          <ThemeToggleButton />
+          <Box alignItems="right">
+            <ThemeToggleButton />
 
-          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-            <Menu isLazy={true}>
-              <MenuButton
-                as={IconButton}
-                icon={<HamburgerIcon />}
-                variant="outline"
-                aria-label="Options"
-              />
+            <Box
+              ml={2}
+              display={{ base: 'inline-block', md: 'none' }}
+              as="section"
+            >
+              <Menu isLazy={true}>
+                <MenuButton
+                  as={IconButton}
+                  icon={<HamburgerIcon />}
+                  variant="outline"
+                  aria-label="Options"
+                />
 
-              <MenuList>
-                <MenuItem
-                  as={NextLink}
-                  href="/about"
-                  _active={{ bgColor: 'transparent' }}
-                  bg={path === '/about' ? 'whiteAlpha.200' : 'inherit'}
-                >
-                  About
-                </MenuItem>
+                <MenuList>
+                  <MenuItem
+                    as={NextLink}
+                    href="/about"
+                    _active={{ bgColor: 'transparent' }}
+                    bg={path === '/about' ? 'whiteAlpha.200' : 'inherit'}
+                  >
+                    About
+                  </MenuItem>
 
-                <MenuItem
-                  href="/works"
-                  as={NextLink}
-                  _active={{ bgColor: 'transparent' }}
-                  bgColor={path === '/works' ? 'whiteAlpha.200' : undefined}
-                >
-                  Works
-                </MenuItem>
+                  <MenuItem
+                    href="/works"
+                    as={NextLink}
+                    _active={{ bgColor: 'transparent' }}
+                    bgColor={path === '/works' ? 'whiteAlpha.200' : undefined}
+                  >
+                    Works
+                  </MenuItem>
 
-                <MenuItem
-                  href="/contact"
-                  as={NextLink}
-                  _active={{ bgColor: 'transparent' }}
-                  bgColor={path === '/contact' ? 'whiteAlpha.200' : undefined}
-                >
-                  Contact
-                </MenuItem>
+                  <MenuItem
+                    href="/contact"
+                    as={NextLink}
+                    _active={{ bgColor: 'transparent' }}
+                    bgColor={path === '/contact' ? 'whiteAlpha.200' : undefined}
+                  >
+                    Contact
+                  </MenuItem>
 
-                <MenuItem
-                  as={NextLink}
-                  href="https://github.com/Haessler16/thovim"
-                  _active={{ bgColor: 'transparent' }}
-                >
-                  View Source
-                </MenuItem>
-              </MenuList>
-            </Menu>
+                  <MenuItem
+                    as={NextLink}
+                    href="https://github.com/Haessler16/thovim"
+                    _active={{ bgColor: 'transparent' }}
+                  >
+                    View Source
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
           </Box>
-        </Box>
+        </Flex>
       </Container>
     </Box>
   );

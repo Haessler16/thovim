@@ -8,15 +8,15 @@ import {
   CardHeader,
   UnorderedList,
   ListItem,
+  Tag,
+  Flex,
+  Highlight,
 } from '@chakra-ui/react';
 import { Section } from '../../components/Section';
 
 import { WorkGridItem } from '../../components/GridItem';
 import { ArticleLayout } from '../../layouts/Article';
 
-import thumbPichu2 from '../../public/images/works/pichu2_eyecatch.png';
-import thumbFreeDBTagger from '../../public/images/works/freedbtagger_eyecatch.png';
-import thumbAmembo from '../../public/images/works/amembo_eyecatch.png';
 import thumbDevels from '../../public/images/works/devels.png';
 import thumbZume from '../../public/images/works/zumed.png';
 import thumbDcf from '../../public/images/works/decentralfi.png';
@@ -25,14 +25,9 @@ import thumbSimonSays from '../../public/images/works/simon-says.png';
 
 const myWorks = [
   {
-    title: 'Ovmafot',
-    subtitle: 'Frontend',
-    description: ['Wix', 'Wordpress', 'Css'],
-  },
-  {
-    title: 'Ponceleon club',
-    subtitle: 'Frontend',
-    description: ['Hmtl', 'Css', 'Js', 'React'],
+    title: 'Devels',
+    subtitle: 'Full-Stack',
+    description: ['Venezuela Locations', 'React (Next.js)', 'Python (FastApi)'],
   },
   {
     title: 'Wingoo',
@@ -40,20 +35,21 @@ const myWorks = [
     description: ['React (Next.js)', 'Tailwind', 'React Forms'],
   },
   {
-    title: 'Devels',
-    subtitle: 'Full-Stack',
-    description: [
-      'Co-creador de Venezuela Locations',
-      'Python (FastApi)',
-      'React (Next.js)',
-    ],
+    title: 'Ponceleon',
+    subtitle: 'Frontend',
+    description: ['Hmtl', 'Css', 'Js', 'React'],
+  },
+  {
+    title: 'Ovmafot',
+    subtitle: 'Frontend',
+    description: ['Wix', 'Wordpress', 'Css'],
   },
 ];
 
 const outstandingWorks = [
   {
     title: 'Turpial Development',
-    subtitle: 'Frontend / Web 3 Developer',
+    subtitle: 'Web 3 Developer / Frontend',
     description: [
       'Creation of decentralized applications with Angular, React (Next.js) and Tailwind.',
       'Testing with Cypress, Jest and Docker implementation.',
@@ -63,15 +59,25 @@ const outstandingWorks = [
   },
   {
     title: 'Zumetrics',
-    subtitle: 'Full-Stack',
+    subtitle: 'Tech Lead / Full-Stack',
     description: [
       'PWA creation with Next.js, Redux and TypeScript.',
       'Layouts with Css-Grid, Bootstrap, Styled Components and Graphs with Chart.js, D3 and Amcharts.',
-      'Backend creation in Node with Express, GraphQL and MongoDB.',
+      'Backend creation in Node.js with Express, GraphQL and MongoDB.',
       'Implementation of Services such as Auth0, Vercel, AWS, Heroku, Digital Ocean, GitHub and GitLap.',
       'Test implementation with Mocha, Jest and StoryBook',
     ],
   },
+];
+
+const QUERY_HIGHLIGHT = [
+  'React',
+  'Testing',
+  'Angular',
+  'Docker',
+  'Redux',
+  'GraphQL',
+  'AWS',
 ];
 
 const Works = () => {
@@ -189,6 +195,7 @@ const Works = () => {
           <Heading as="h2" variant="section-title">
             Experience:
           </Heading>
+
           <SimpleGrid columns={1} gap={3}>
             {outstandingWorks.map(({ title, subtitle, description }) => {
               return (
@@ -216,9 +223,25 @@ const Works = () => {
                   <CardBody py="1.5" pb="1.5rem">
                     {/* <Text>{description}</Text> */}
 
-                    <UnorderedList px="5">
+                    <UnorderedList
+                      px="5"
+                      display="flex"
+                      flexDir="column"
+                      gap={2}
+                    >
                       {description.map((items) => {
-                        return <ListItem key={items}>{items}</ListItem>;
+                        return (
+                          <ListItem key={items}>
+                            <Highlight
+                              query={QUERY_HIGHLIGHT}
+                              styles={{
+                                color: 'teal.100',
+                              }}
+                            >
+                              {items}
+                            </Highlight>
+                          </ListItem>
+                        );
                       })}
                     </UnorderedList>
                   </CardBody>
@@ -254,11 +277,22 @@ const Works = () => {
                   <CardBody py="1.5" pb="1.5rem">
                     {/* <Text>{description}</Text> */}
 
-                    <UnorderedList px="5">
+                    {/* <UnorderedList px="5"> */}
+                    <Flex justifyContent="center" flexWrap="wrap" gap={1}>
                       {description.map((items) => {
-                        return <ListItem key={items}>{items}</ListItem>;
+                        return (
+                          <Tag
+                            key={items}
+                            variant="solid"
+                            colorScheme="blue"
+                            textAlign="center"
+                          >
+                            {items}
+                          </Tag>
+                        );
                       })}
-                    </UnorderedList>
+                    </Flex>
+                    {/* </UnorderedList> */}
                   </CardBody>
                 </Card>
               );

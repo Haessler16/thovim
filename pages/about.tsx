@@ -32,7 +32,7 @@ const mySkills = [
   {
     title: 'React',
     description: '',
-    attr: ['Next.js', 'React Native'],
+    attr: ['Next.js', 'React Native', 'Redux'],
     img: SiReact,
     bgColor: 'dodgerblue',
   },
@@ -60,7 +60,7 @@ const mySkills = [
   {
     title: 'Css',
     description: '',
-    attr: ['Material', 'Bootstap', 'Sass', 'Chakra UI', 'Framer Motion'],
+    attr: ['Material', 'Bootstap', 'Sass', 'Tailwind', 'Framer Motion'],
     img: SiCss3,
     bgColor: 'deepskyblue',
   },
@@ -97,12 +97,12 @@ const AboutMe: NextPage = () => {
           alignItems="center"
         >
           <Paragraph>
-            I am passionate about the world of technology, especially the
-            development of web, mobile and decentralized applications. That is
-            why I have applied myself to acquire the knowledge and experience
-            necessary for these areas. I have achieved this thanks to
-            perseverance, discipline and the desire to continue learning, all in
-            order to achieve my goals.
+            Passionate about the world of technology, I have dedicated myself to
+            the development of web, mobile, and decentralized applications for
+            <b> over 6 years</b>. <br /> My relentless pursuit of knowledge and
+            hands-on experience in these domains has been driven by
+            perseverance, discipline, and a strong desire to keep learning, all
+            aimed at achieving my goals.
           </Paragraph>
         </Box>
       </Section>

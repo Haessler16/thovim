@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 const LogoBox = styled.span`
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   display: inline-flex;
   align-items: center;
   height: 30px;
@@ -23,12 +23,11 @@ export const Logo = () => {
   return (
     <Link href="/" passHref>
       <LogoBox>
-        <Image src={footPrintImg} width={20} height={20} alt="logo" />
+        <Image src={footPrintImg} width={25} height={25} alt="logo" />
         <Text
-          color={useColorModeValue('gray.80', 'whiteAlpha.90')}
-          fontFamily="M PLUS Rounded 1c"
-          fontWeight="bold"
           ml={3}
+          fontFamily="M PLUS Rounded 1c"
+          color={useColorModeValue('gray.80', 'whiteAlpha.90')}
         >
           Haessler León
         </Text>

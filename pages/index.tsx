@@ -120,14 +120,17 @@ const Home: NextPage = () => {
           <Heading as="h3" variant="section-title">
             Bio
           </Heading>
+
           <BioSection>
             <BioYear>2000</BioYear>I Born in Tachira, Venezuela.
           </BioSection>
+
           <BioSection>
             <BioYear>2017</BioYear>Start to study Programing.
           </BioSection>
+
           <BioSection>
-            <BioYear>2019 to present</BioYear>Works as a freelancer.
+            <BioYear>2018 to present</BioYear>Works as a freelancer.
           </BioSection>
         </Section>
 
@@ -189,7 +192,7 @@ const Home: NextPage = () => {
             </ListItem>
           </List>
 
-          <SimpleGrid columns={[1, 2, 2]} gap={6}>
+          <SimpleGrid mt={2} columns={[1, 2, 2]} gap={6}>
             {/* <GridItem
               href="https://www.youtube.com/devaslife"
               title="Dev as Life"
