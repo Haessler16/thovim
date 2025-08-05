@@ -8,12 +8,13 @@ import {
   Heading,
   Stack,
   useColorModeValue,
-  Grid,
+  SimpleGrid,
   Icon,
   Center,
   UnorderedList,
   ListItem,
 } from '@chakra-ui/react';
+import { useMemo } from 'react';
 import { Section } from '../components/Section';
 import { Paragraph } from '../components/Paragraph';
 
@@ -26,13 +27,15 @@ import {
   SiNodedotjs,
   SiPython,
   SiReact,
+  SiSwift,
+  SiShopify,
 } from 'react-icons/si';
 
 const mySkills = [
   {
     title: 'React',
     description: '',
-    attr: ['Next.js', 'React Native', 'Redux'],
+    attr: ['React Native', 'Next.js', 'Redux'],
     img: SiReact,
     bgColor: 'dodgerblue',
   },
@@ -46,7 +49,7 @@ const mySkills = [
   {
     title: 'Node',
     description: '',
-    attr: ['Express', 'MongoDB', 'GraphQL'],
+    attr: ['Express', 'NestJS', 'MongoDB', 'GraphQL'],
     img: SiNodedotjs,
     bgColor: 'darkgreen',
   },
@@ -58,9 +61,23 @@ const mySkills = [
     bgColor: 'goldenrod',
   },
   {
+    title: 'Swift',
+    description: '',
+    attr: ['iOS Development', 'SwiftUI', 'UIKit'],
+    img: SiSwift,
+    bgColor: '#FF4B33',
+  },
+  {
+    title: 'Shopify',
+    description: '',
+    attr: ['Theme Development', 'App Development', 'Liquid'],
+    img: SiShopify,
+    bgColor: '#96BF47',
+  },
+  {
     title: 'Css',
     description: '',
-    attr: ['Material', 'Bootstap', 'Sass', 'Tailwind', 'Framer Motion'],
+    attr: ['Material', 'Bootstap', 'Tailwind', 'Sass', 'Framer Motion'],
     img: SiCss3,
     bgColor: 'deepskyblue',
   },
@@ -81,7 +98,41 @@ const Wrapper = ({ children }) => {
   );
 };
 
+const SkillCard = ({ title, img, bgColor, attr }) => (
+  <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7}>
+    <Card maxW="sm" borderRadius="lg" border="2px" h="full">
+      <CardBody p="0">
+        <Center
+          w="full"
+          h="150px"
+          bg={bgColor}
+          color="white"
+          borderTopRadius="md"
+        >
+          <Icon as={img} boxSize={'32'} />
+        </Center>
+
+        <Stack spacing="3" p="4">
+          <Heading size="md">{title}</Heading>
+          <UnorderedList px="5">
+            {attr.map((item) => (
+              <ListItem key={item}>{item}</ListItem>
+            ))}
+          </UnorderedList>
+        </Stack>
+      </CardBody>
+    </Card>
+  </Tilt>
+);
+
 const AboutMe: NextPage = () => {
+  const bgColor = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200');
+
+  const skillCards = useMemo(
+    () => mySkills.map((skill) => <SkillCard key={skill.title} {...skill} />),
+    []
+  );
+
   return (
     <Wrapper>
       <Section>
@@ -89,17 +140,11 @@ const AboutMe: NextPage = () => {
           This is me:
         </Heading>
 
-        <Box
-          borderRadius="lg"
-          bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
-          mb={6}
-          p={3}
-          alignItems="center"
-        >
+        <Box borderRadius="lg" bg={bgColor} mb={6} p={3} alignItems="center">
           <Paragraph>
             Passionate about the world of technology, I have dedicated myself to
             the development of web, mobile, and decentralized applications for
-            <b> over 6 years</b>. <br /> My relentless pursuit of knowledge and
+            <b> over 8 years</b>. <br /> My relentless pursuit of knowledge and
             hands-on experience in these domains has been driven by
             perseverance, discipline, and a strong desire to keep learning, all
             aimed at achieving my goals.
@@ -112,46 +157,9 @@ const AboutMe: NextPage = () => {
           Skills:
         </Heading>
 
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
-          {mySkills.map(({ title, description, img, bgColor, attr }) => {
-            return (
-              <Tilt
-                tiltMaxAngleX={7}
-                tiltMaxAngleY={7}
-                // tiltReverse={true}
-                key={title}
-              >
-                <Card maxW="sm" borderRadius="lg" border="2px" h="full">
-                  <CardBody p="0">
-                    {/* <Image
-                      src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                      alt={`My ${title} skill`}
-                    /> */}
-                    <Center
-                      w="full"
-                      h="150px"
-                      bg={bgColor}
-                      color="white"
-                      borderTopRadius="md"
-                    >
-                      <Icon as={img} boxSize={'32'} />
-                    </Center>
-
-                    <Stack spacing="3" p="4">
-                      <Heading size="md">{title}</Heading>
-
-                      <UnorderedList px="5">
-                        {attr.map((items) => {
-                          return <ListItem key={items}>{items}</ListItem>;
-                        })}
-                      </UnorderedList>
-                    </Stack>
-                  </CardBody>
-                </Card>
-              </Tilt>
-            );
-          })}
-        </Grid>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+          {skillCards}
+        </SimpleGrid>
       </Section>
     </Wrapper>
   );

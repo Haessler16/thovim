@@ -84,9 +84,9 @@ const Home: NextPage = () => {
           </Heading>
 
           <Paragraph>
-            In more than 5 years I have been able to work with various
+            In more than 8 years I have been able to work with various
             JavaScript and Python technologies both in Frontend and Backend,
-            especially with React.js, Angular and Node.js.
+            especially with React.js, Angular, Swift and Node.js.
           </Paragraph>
 
           <Paragraph>
@@ -130,7 +130,7 @@ const Home: NextPage = () => {
           </BioSection>
 
           <BioSection>
-            <BioYear>2018 to present</BioYear>Works as a freelancer.
+            <BioYear>2018 to present</BioYear>Works as a Software Engineer.
           </BioSection>
         </Section>
 
