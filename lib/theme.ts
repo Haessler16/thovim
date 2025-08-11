@@ -1,12 +1,11 @@
-import { extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
+import { extendTheme, useColorModeValue } from '@chakra-ui/react';
 
 const styles = {
-  global: (props) => ({
+  global: {
     body: {
-      bg: mode('#f0e7db', '#202023')(props),
+      bg: { light: '#f0e7db', dark: '#202023' },
     },
-  }),
+  },
 };
 
 const components = {
@@ -25,8 +24,8 @@ const components = {
   },
 
   Link: {
-    baseStyle: (props) => {
-      color: mode('#3d7aed', '#ff63c3')(props);
+    baseStyle: {
+      color: { light: '#3d7aed', dark: '#ff63c3' },
     },
   },
 };
