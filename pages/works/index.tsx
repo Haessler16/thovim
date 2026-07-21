@@ -40,26 +40,26 @@ const myWorks = [
     subtitle: 'Frontend',
     description: ['Next.js', 'TypeScript', 'TailwindCSS', 'Dynamic Search'],
   },
-  {
-    title: 'AR Mortgage',
-    subtitle: 'Frontend',
-    description: ['Wix', 'Zoho', 'CSS'],
-  },
-  {
-    title: 'Aluxion with HLA',
-    subtitle: 'Full-Stack',
-    description: ['React', 'Next.js', 'PostgreSQL', 'NestJS'],
-  },
-  {
-    title: 'Devels',
-    subtitle: 'Full-Stack',
-    description: ['Venezuela Locations', 'React (Next.js)', 'Python (FastApi)'],
-  },
-  {
-    title: 'Wingoo',
-    subtitle: 'Frontend',
-    description: ['React (Next.js)', 'Tailwind', 'React Forms'],
-  },
+  // {
+  //   title: 'AR Mortgage',
+  //   subtitle: 'Frontend',
+  //   description: ['Wix', 'Zoho', 'CSS'],
+  // },
+  // {
+  //   title: 'Aluxion with HLA',
+  //   subtitle: 'Full-Stack',
+  //   description: ['React', 'Next.js', 'PostgreSQL', 'NestJS'],
+  // },
+  // {
+  //   title: 'Devels',
+  //   subtitle: 'Full-Stack',
+  //   description: ['Venezuela Locations', 'React (Next.js)', 'Python (FastApi)'],
+  // },
+  // {
+  //   title: 'Wingoo',
+  //   subtitle: 'Frontend',
+  //   description: ['React (Next.js)', 'Tailwind', 'React Forms'],
+  // },
   {
     title: 'Ponceleon',
     subtitle: 'Frontend',
