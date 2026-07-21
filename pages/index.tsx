@@ -97,7 +97,7 @@ const Home: NextPage = () => {
             through graphs.
             <br />
             <br />
-            <Link as={NextLink} href="/work/decentralfi" color="teal.200">
+            <Link as={NextLink} href="/works/decentralfi" color="teal.200">
               See my work
             </Link>
           </Paragraph>
