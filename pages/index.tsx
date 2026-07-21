@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           p={3}
           alignItems="center"
         >
-          Hello, I´m a full-stack developer based in Venezuela!
+          Hello, I´m a full-stack developer based in Brazil!
         </Box>
 
         {/* DESCRIPTION AND PHOTO */}
@@ -84,7 +84,7 @@ const Home: NextPage = () => {
           </Heading>
 
           <Paragraph>
-            In more than 8 years I have been able to work with various
+            In more than 9 years I have been able to work with various
             JavaScript and Python technologies both in Frontend and Backend,
             especially with React.js, Angular, Swift and Node.js.
           </Paragraph>

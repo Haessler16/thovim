@@ -30,16 +30,16 @@ import thumbNexxo from '../../public/images/works/busi_home.jpeg';
 import thumbPolyresin from '../../public/images/works/hla_home.png';
 
 const myWorks = [
-  // {
-  //   title: 'Nexxo',
-  //   subtitle: 'Mobile Full-Stack',
-  //   description: ['React Native', 'Expo', 'NestJS', 'PostgreSQL'],
-  // },
-  // {
-  //   title: 'Quimicas Polyresin',
-  //   subtitle: 'Frontend',
-  //   description: ['Next.js', 'TypeScript', 'TailwindCSS', 'Dynamic Search'],
-  // },
+  {
+    title: 'Nexxo',
+    subtitle: 'Mobile Full-Stack',
+    description: ['React Native', 'Expo', 'NestJS', 'PostgreSQL'],
+  },
+  {
+    title: 'Quimicas Polyresin',
+    subtitle: 'Frontend',
+    description: ['Next.js', 'TypeScript', 'TailwindCSS', 'Dynamic Search'],
+  },
   {
     title: 'AR Mortgage',
     subtitle: 'Frontend',
