@@ -4,13 +4,18 @@ import NoSsr from '../components/No-Ssr';
 import { Box, Container } from '@chakra-ui/react';
 import { VoxelDog } from '../components/Voxel-Dog';
 
-export const MainLayout = ({ children, router }) => {
+export const MainLayout = ({ children, router, locale }) => {
   return (
     <Box as="main" pb={8}>
       <Header>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Haessler Leon</title>
+        <title>Haessler León</title>
         <link rel="icon" href="/h_blue_light.jfif" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.lang = '${locale ?? 'en'}';`,
+          }}
+        />
       </Header>
 
       <Navbar path={router.asPath} />

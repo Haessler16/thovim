@@ -3,8 +3,11 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Meta, WorkImage, Title } from '../../components/WorksDetails';
 import { Paragraph } from '../../components/Paragraph';
 import { ArticleLayout } from '../../layouts/Article';
+import { useTranslation } from '../../lib/dictionaries';
 
 const InkDrop = () => {
+  const t = useTranslation();
+
   return (
     <ArticleLayout title="Decentrafi">
       <Container>
@@ -12,28 +15,23 @@ const InkDrop = () => {
           DecentralFi <Badge>2021</Badge>
         </Title>
 
-        <Paragraph>
-          Decentral is a decentralized web application, with the objective of
-          carrying out transactions with cryptocurrency, creating and managing
-          wallets, viewing market values and managing your liquidity on the
-          thorchain platform.
-        </Paragraph>
+        <Paragraph>{t.workPages.decentralfi.p1}</Paragraph>
 
         <List ml={4} my={4}>
           <ListItem>
-            <Meta>Website</Meta>
+            <Meta>{t.worksDetails.website}</Meta>
             <Link href="https://decentralfi.io/">
               https://decentralfi.io/ <ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
 
           <ListItem>
-            <Meta>Platform</Meta>
+            <Meta>{t.worksDetails.platform}</Meta>
             <span>Web / Movil / Desktop</span>
           </ListItem>
 
           <ListItem>
-            <Meta>Stack</Meta>
+            <Meta>{t.worksDetails.stack}</Meta>
             <span>Angular, Django, Postgresql, Jest</span>
           </ListItem>
         </List>

@@ -21,17 +21,21 @@ import { Section } from '../components/Section';
 import { Paragraph } from '../components/Paragraph';
 import { BioSection, BioYear } from '../components/Bio';
 import { GridItem } from '../components/GridItem';
+import { useTranslation } from '../lib/dictionaries';
 
 // LAYOUTS
 import { ArticleLayout } from '../layouts/Article';
 
 // ICONS
-import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
+import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
 import thumbDecentral from '../public/images/works/last_preview.jpg';
+import thumbAccessPay from '../public/images/works/busi.png';
 
 const Home: NextPage = () => {
+  const t = useTranslation();
+
   return (
-    <ArticleLayout title="Home">
+    <ArticleLayout title={t.meta.homeTitle}>
       <Container>
         <Box
           borderRadius="lg"
@@ -40,7 +44,7 @@ const Home: NextPage = () => {
           p={3}
           alignItems="center"
         >
-          Hello, I´m a full-stack developer based in Brazil!
+          {t.index.hero}
         </Box>
 
         {/* DESCRIPTION AND PHOTO */}
@@ -52,10 +56,10 @@ const Home: NextPage = () => {
             justifyContent="center"
           >
             <Heading as="h2" variant="page-title">
-              Haessler León
+              {t.meta.name}
             </Heading>
 
-            <p>Digital Enthusiast ( Developer / Designer )</p>
+            <p>{t.meta.role}</p>
           </Box>
 
           <Box
@@ -72,7 +76,7 @@ const Home: NextPage = () => {
               display="inline-block"
               borderRadius="full"
               src="/images/hae.jpeg"
-              alt="Haessler León"
+              alt={t.meta.name}
             />
           </Box>
         </Box>
@@ -80,25 +84,17 @@ const Home: NextPage = () => {
         {/* WORK */}
         <Section delay={'0.1'}>
           <Heading as="h2" variant="section-title">
-            Work
+            {t.index.workTitle}
           </Heading>
 
-          <Paragraph>
-            In more than 9 years I have been able to work with various
-            JavaScript and Python technologies both in Frontend and Backend,
-            especially with React.js, Angular, Swift and Node.js.
-          </Paragraph>
+          <Paragraph>{t.index.work1}</Paragraph>
 
           <Paragraph>
-            I have specialized in Web 3 bone technologies, in the creation of
-            interfaces for the management of crypto currencies, blockchain and
-            virtual wallets. At the same time, I gained experience in the
-            creation of complex dashboards that allow the visualization of data
-            through graphs.
+            {t.index.work2}
             <br />
             <br />
-            <Link as={NextLink} href="/works/decentralfi" color="teal.200">
-              See my work
+            <Link as={NextLink} href="/works" color="teal.200">
+              {t.index.seeMyWork}
             </Link>
           </Paragraph>
 
@@ -109,7 +105,7 @@ const Home: NextPage = () => {
                 colorScheme="teal"
                 variant="blue"
               >
-                My Portfolio
+                {t.index.myPortfolio}
               </Button>
             </NextLink>
           </Box>
@@ -118,37 +114,38 @@ const Home: NextPage = () => {
         {/* BIOGRAPHY */}
         <Section delay={'0.2'}>
           <Heading as="h3" variant="section-title">
-            Bio
+            {t.index.bioTitle}
           </Heading>
 
           <BioSection>
-            <BioYear>2000</BioYear>I Born in Tachira, Venezuela.
+            <BioYear>2000</BioYear>
+            {t.index.bio2000}
           </BioSection>
 
           <BioSection>
-            <BioYear>2017</BioYear>Start to study Programing.
+            <BioYear>2017</BioYear>
+            {t.index.bio2017}
           </BioSection>
 
           <BioSection>
-            <BioYear>2018 to present</BioYear>Works as a Software Engineer.
+            <BioYear>2018 to present</BioYear>
+            {t.index.bio2018}
           </BioSection>
         </Section>
 
         {/* WHAT I LIKE */}
         <Section delay={'0.3'}>
           <Heading as="h3" variant="section-title">
-            I 💙
+            {t.index.likeTitle}
           </Heading>
 
-          <Paragraph>
-            Comics, Drawing, Music, Photography and Machine Learning
-          </Paragraph>
+          <Paragraph>{t.index.like}</Paragraph>
         </Section>
 
         {/* SOCIAL MEDIA */}
         <Section delay={'0.3'}>
           <Heading as="h3" variant="section-title">
-            On the web
+            {t.index.webTitle}
           </Heading>
 
           <List>
@@ -165,20 +162,8 @@ const Home: NextPage = () => {
             </ListItem>
 
             <ListItem>
-              <Link href="https://twitter.com/haesslertvm" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoTwitter} />}
-                >
-                  @haesslertvm
-                </Button>
-              </Link>
-            </ListItem>
-
-            <ListItem>
               <Link
-                href="https://www.linkedin.com/in/haessler-leon-633a10182/"
+                href="https://www.linkedin.com/in/haessler-leon/"
                 target="_blank"
               >
                 <Button
@@ -193,30 +178,22 @@ const Home: NextPage = () => {
           </List>
 
           <SimpleGrid mt={2} columns={[1, 2, 2]} gap={6}>
-            {/* <GridItem
-              href="https://www.youtube.com/devaslife"
-              title="Dev as Life"
-              thumbnail={thumbYouTube}
-            >
-              My YouTube channel
-            </GridItem> */}
-
             <GridItem
               href="https://decentralfi.io/"
               title="DecentralFi"
               thumbnail={thumbDecentral}
             >
-              A crypto decentralize app
+              {t.index.decentralFiDesc}
+            </GridItem>
+
+            <GridItem
+              href="https://apps.apple.com/ve/app/accesspay/id6740498074"
+              title="Access Pay"
+              thumbnail={thumbAccessPay}
+            >
+              {t.index.accessPayDesc}
             </GridItem>
           </SimpleGrid>
-
-          {/* <Box my={4}>
-            <NextLink href="/posts">
-              <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-                Popular posts
-              </Button>
-            </NextLink>
-          </Box> */}
         </Section>
       </Container>
     </ArticleLayout>

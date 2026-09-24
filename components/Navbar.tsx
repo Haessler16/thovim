@@ -17,6 +17,8 @@ import {
 
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { ThemeToggleButton } from './ThemeToggleButton';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useTranslation } from '../lib/dictionaries';
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;
@@ -41,16 +43,16 @@ const LinkItem = ({ href, path, children }) => {
 
 export const Navbar = (props) => {
   const { path } = props;
+  const t = useTranslation();
 
   return (
     <Box
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue('#ffffff40', '#20202330')}
+      bg={useColorModeValue('#ffffff40', '#20202380')}
       style={{ backdropFilter: 'blur(10px)' }}
       zIndex={1}
-      {...props}
     >
       <Container
         p={2}
@@ -64,7 +66,7 @@ export const Navbar = (props) => {
           <Logo />
         </Heading>
 
-        <Flex as="section" gap={2}>
+        <Flex as="section" gap={2} alignItems="center">
           <Stack
             display={{ base: 'none', md: 'flex' }}
             direction={{ base: 'column', md: 'row' }}
@@ -74,27 +76,25 @@ export const Navbar = (props) => {
             fontSize="md"
           >
             <LinkItem href="/about" path={path}>
-              About
+              {t.nav.about}
             </LinkItem>
 
             <LinkItem href="/works" path={path}>
-              Works
+              {t.nav.works}
             </LinkItem>
 
-            {/* <LinkItem href="/posts" path={path}>
-            Posts
-          </LinkItem> */}
-
             <LinkItem href="/contact" path={path}>
-              Contact
+              {t.nav.contact}
             </LinkItem>
           </Stack>
 
-          <Box alignItems="right">
+          <Box display="flex" alignItems="center" gap={1}>
+            <LanguageSwitcher />
+
             <ThemeToggleButton />
 
             <Box
-              ml={2}
+              ml={1}
               display={{ base: 'inline-block', md: 'none' }}
               as="section"
             >
@@ -103,7 +103,7 @@ export const Navbar = (props) => {
                   as={IconButton}
                   icon={<HamburgerIcon />}
                   variant="outline"
-                  aria-label="Options"
+                  aria-label={t.nav.options}
                 />
 
                 <MenuList>
@@ -113,7 +113,7 @@ export const Navbar = (props) => {
                     _active={{ bgColor: 'transparent' }}
                     bg={path === '/about' ? 'whiteAlpha.200' : 'inherit'}
                   >
-                    About
+                    {t.nav.about}
                   </MenuItem>
 
                   <MenuItem
@@ -122,7 +122,7 @@ export const Navbar = (props) => {
                     _active={{ bgColor: 'transparent' }}
                     bgColor={path === '/works' ? 'whiteAlpha.200' : undefined}
                   >
-                    Works
+                    {t.nav.works}
                   </MenuItem>
 
                   <MenuItem
@@ -131,7 +131,7 @@ export const Navbar = (props) => {
                     _active={{ bgColor: 'transparent' }}
                     bgColor={path === '/contact' ? 'whiteAlpha.200' : undefined}
                   >
-                    Contact
+                    {t.nav.contact}
                   </MenuItem>
 
                   <MenuItem
@@ -139,7 +139,7 @@ export const Navbar = (props) => {
                     href="https://github.com/Haessler16/thovim"
                     _active={{ bgColor: 'transparent' }}
                   >
-                    View Source
+                    {t.nav.viewSource}
                   </MenuItem>
                 </MenuList>
               </Menu>

@@ -11,7 +11,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="es">
+      <Html lang="en" suppressHydrationWarning>
         <Head />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

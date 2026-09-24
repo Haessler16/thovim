@@ -3,8 +3,11 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Meta, WorkImage, Title } from '../../components/WorksDetails';
 import { Paragraph } from '../../components/Paragraph';
 import { ArticleLayout } from '../../layouts/Article';
+import { useTranslation } from '../../lib/dictionaries';
 
 const InkDrop = () => {
+  const t = useTranslation();
+
   return (
     <ArticleLayout title="Zumetrics">
       <Container>
@@ -12,26 +15,23 @@ const InkDrop = () => {
           Zumetrics <Badge>2020</Badge>
         </Title>
 
-        <Paragraph>
-          Zumetrics was an application designed to view and manage all the
-          metrics of your social networks.
-        </Paragraph>
+        <Paragraph>{t.workPages.zumetrics.p1}</Paragraph>
 
         <List ml={4} my={4}>
           <ListItem>
-            <Meta>Website</Meta>
+            <Meta>{t.worksDetails.website}</Meta>
             <Link href="https://my.zumetrics.vercel.app/" target="_blank">
               https://my.zumetrics.vercel.app/ <ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
 
           <ListItem>
-            <Meta>Platform</Meta>
+            <Meta>{t.worksDetails.platform}</Meta>
             <span>Web / Movil / Desktop</span>
           </ListItem>
 
           <ListItem>
-            <Meta>Stack</Meta>
+            <Meta>{t.worksDetails.stack}</Meta>
             <span>
               React, NextJS, NodeJS, Express.JS, GraphQl, MongoDB, Storybook
             </span>

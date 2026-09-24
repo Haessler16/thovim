@@ -7,17 +7,20 @@ import {
   Divider,
   Button,
 } from '@chakra-ui/react';
+import { useTranslation } from '../lib/dictionaries';
 
 const NotFound = () => {
+  const t = useTranslation();
+
   return (
     <Container>
-      <Heading as="h1">Not Found</Heading>
-      <Text>The page you&apos;re looking for was not found</Text>
+      <Heading as="h1">{t.notFound.title}</Heading>
+      <Text>{t.notFound.text}</Text>
       <Divider my={6} />
 
       <Flex my={6} alignItems="center">
         <NextLink href="/">
-          <Button colorScheme="teal">Return to home</Button>
+          <Button colorScheme="teal">{t.notFound.backHome}</Button>
         </NextLink>
       </Flex>
     </Container>

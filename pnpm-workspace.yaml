@@ -1,0 +1,10 @@
+packages:
+  - '.'
+allowBuilds:
+  unrs-resolver: true
+onlyBuiltDependencies:
+  - unrs-resolver
+  - sharp
+minimumReleaseAgeExclude:
+  - prettier@3.9.9
+  - react-parallax-tilt@1.7.344

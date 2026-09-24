@@ -5,68 +5,61 @@ import {
   Link,
   List,
   ListItem,
-  AspectRatio,
-  Image,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Meta, WorkImage, Title } from '../../components/WorksDetails';
 import { Section } from '../../components/Section';
 import { Paragraph } from '../../components/Paragraph';
 import { ArticleLayout } from '../../layouts/Article';
+import { useTranslation } from '../../lib/dictionaries';
 
-const Work: NextPage = () => (
-  <ArticleLayout title="Busi">
-    <Title>Busi</Title>
+const Work: NextPage = () => {
+  const t = useTranslation();
 
-    <Paragraph>
-      A comprehensive digital platform that transforms the public transportation
-      experience in Latin America. Busi is revolutionizing how people purchase
-      and manage bus tickets, offering a transparent and planned mobility
-      experience through digitalization.
-    </Paragraph>
-    <List ml={4} my={4}>
-      <ListItem>
-        <Meta>Website</Meta>
-        <Link href="https://www.busiboletos.com/" target="_blank">
-          https://www.busiboletos.com/ <ExternalLinkIcon mx={2} />
-        </Link>
-      </ListItem>
-      <ListItem>
-        <Meta>Stack</Meta>
-        React, Next.js, TypeScript, React Native, Ionic, Node.js, PostgreSQL
-      </ListItem>
-      <ListItem>
-        <Meta>Platform</Meta>
-        Web Application, Mobile Application
-      </ListItem>
-    </List>
+  return (
+    <ArticleLayout title="Busi">
+      <Title>Busi</Title>
 
-    <Section delay={'0.1'}>
-      <WorkImage src="/images/works/busi_home.jpeg" alt="Busi Mobile App" />
-    </Section>
+      <Paragraph>{t.workPages.busi.p1}</Paragraph>
+      <List ml={4} my={4}>
+        <ListItem>
+          <Meta>{t.worksDetails.website}</Meta>
+          <Link href="https://www.busiboletos.com/" target="_blank">
+            https://www.busiboletos.com/ <ExternalLinkIcon mx={2} />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Meta>{t.worksDetails.stack}</Meta>
+          React, Next.js, TypeScript, React Native, Ionic, Node.js, PostgreSQL
+        </ListItem>
+        <ListItem>
+          <Meta>{t.worksDetails.platform}</Meta>
+          Web Application, Mobile Application
+        </ListItem>
+      </List>
 
-    <Paragraph>
-      The platform offers a suite of digital solutions including mobile apps for
-      passengers and operators, digital ticket management, and bus rental
-      services. Key features include ticket price checking, departure schedules,
-      QR code tickets, and a comprehensive operator management system.
-    </Paragraph>
+      <Section delay={'0.1'}>
+        <WorkImage src="/images/works/busi_home.jpeg" alt="Busi Mobile App" />
+      </Section>
 
-    <List ml={4} my={4}>
-      <ListItem>
-        <Badge mr={2}>Mobile Apps</Badge>
-        Android & iOS applications with digital ticket management
-      </ListItem>
-      <ListItem>
-        <Badge mr={2}>Integration</Badge>
-        Payment gateways, QR code system, Real-time tracking
-      </ListItem>
-      <ListItem>
-        <Badge mr={2}>Business Model</Badge>
-        B2C (Passengers) and B2B (Bus Operators) solutions
-      </ListItem>
-    </List>
-  </ArticleLayout>
-);
+      <Paragraph>{t.workPages.busi.p2}</Paragraph>
+
+      <List ml={4} my={4}>
+        <ListItem>
+          <Badge mr={2}>{t.workPages.busi.badge1}</Badge>
+          {t.workPages.busi.badge1Desc}
+        </ListItem>
+        <ListItem>
+          <Badge mr={2}>{t.workPages.busi.badge2}</Badge>
+          {t.workPages.busi.badge2Desc}
+        </ListItem>
+        <ListItem>
+          <Badge mr={2}>{t.workPages.busi.badge3}</Badge>
+          {t.workPages.busi.badge3Desc}
+        </ListItem>
+      </List>
+    </ArticleLayout>
+  );
+};
 
 export default Work;

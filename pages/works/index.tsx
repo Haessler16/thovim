@@ -17,6 +17,7 @@ import { Section } from '../../components/Section';
 
 import { WorkGridItem } from '../../components/GridItem';
 import { ArticleLayout } from '../../layouts/Article';
+import { useTranslation } from '../../lib/dictionaries';
 
 import thumbDevels from '../../public/images/works/devels.png';
 import thumbZume from '../../public/images/works/zumed.png';
@@ -26,85 +27,6 @@ import thumbSimonSays from '../../public/images/works/simon-says.png';
 import thumbBusi from '../../public/images/works/busi.png';
 import thumbArMortgage from '../../public/images/works/ao.png';
 import thumbAluxionHla from '../../public/images/works/grupo-hla.jpg';
-import thumbNexxo from '../../public/images/works/busi_home.jpeg';
-import thumbPolyresin from '../../public/images/works/hla_home.png';
-
-const myWorks = [
-  {
-    title: 'Nexxo',
-    subtitle: 'Mobile Full-Stack',
-    description: ['React Native', 'Expo', 'NestJS', 'PostgreSQL'],
-  },
-  {
-    title: 'Quimicas Polyresin',
-    subtitle: 'Frontend',
-    description: ['Next.js', 'TypeScript', 'TailwindCSS', 'Dynamic Search'],
-  },
-  // {
-  //   title: 'AR Mortgage',
-  //   subtitle: 'Frontend',
-  //   description: ['Wix', 'Zoho', 'CSS'],
-  // },
-  // {
-  //   title: 'Aluxion with HLA',
-  //   subtitle: 'Full-Stack',
-  //   description: ['React', 'Next.js', 'PostgreSQL', 'NestJS'],
-  // },
-  // {
-  //   title: 'Devels',
-  //   subtitle: 'Full-Stack',
-  //   description: ['Venezuela Locations', 'React (Next.js)', 'Python (FastApi)'],
-  // },
-  // {
-  //   title: 'Wingoo',
-  //   subtitle: 'Frontend',
-  //   description: ['React (Next.js)', 'Tailwind', 'React Forms'],
-  // },
-  {
-    title: 'Ponceleon',
-    subtitle: 'Frontend',
-    description: ['HTML', 'CSS', 'JavaScript', 'React'],
-  },
-  {
-    title: 'Ovmafot',
-    subtitle: 'Frontend',
-    description: ['Wix', 'Wordpress', 'Css'],
-  },
-];
-
-const outstandingWorks = [
-  {
-    title: 'Busi',
-    subtitle: 'Mobile / Frontend',
-    description: [
-      'Creation of decentralized applications with Angular, React (Next.js) and Tailwind.',
-      'Testing with Cypress, Jest and Docker implementation.',
-      'Use of Blockchain services and platforms such as Thorchain, Terra and Telegram bots´ creation.',
-      'Integration with Wallets such as Metamask, Xdefi and Keystore.',
-    ],
-  },
-  {
-    title: 'Turpial Development',
-    subtitle: 'Web 3 Developer / Frontend',
-    description: [
-      'Creation of decentralized applications with Angular, React (Next.js) and Tailwind.',
-      'Testing with Cypress, Jest and Docker implementation.',
-      'Use of Blockchain services and platforms such as Thorchain, Terra and Telegram bots´ creation.',
-      'Integration with Wallets such as Metamask, Xdefi and Keystore.',
-    ],
-  },
-  {
-    title: 'Zumetrics',
-    subtitle: 'Tech Lead / Full-Stack',
-    description: [
-      'PWA creation with Next.js, Redux and TypeScript.',
-      'Layouts with Css-Grid, Bootstrap, Styled Components and Graphs with Chart.js, D3 and Amcharts.',
-      'Backend creation in Node.js with Express, GraphQL and MongoDB.',
-      'Implementation of Services such as Auth0, Vercel, AWS, Heroku, Digital Ocean, GitHub and GitLap.',
-      'Test implementation with Mocha, Jest and StoryBook',
-    ],
-  },
-];
 
 const QUERY_HIGHLIGHT = [
   'React',
@@ -133,56 +55,39 @@ const QUERY_HIGHLIGHT = [
 
 // Featured works data
 const featuredWorks = [
-  // {
-  //   id: 'nexxo',
-  //   title: 'Nexxo',
-  //   thumbnail: thumbNexxo,
-  //   description:
-  //     'Mobile app for managing shared expenses with friends and groups.',
-  //   delay: '0.1',
-  // },
-  // {
-  //   id: 'quimicas-polyresin',
-  //   title: 'Quimicas Polyresin',
-  //   thumbnail: thumbPolyresin,
-  //   description: 'Chemical plant services portal with dynamic product search.',
-  //   delay: '0.2',
-  // },
   {
     id: 'busi',
     title: 'Busi',
     thumbnail: thumbBusi,
-    description:
-      'Digital platform transforming public transportation in Latin America.',
+    descKey: 'busiDesc' as const,
     delay: '0.3',
   },
   {
     id: 'ar-mortgage',
     title: 'AR Mortgage',
     thumbnail: thumbArMortgage,
-    description: 'Strategic mortgage solutions platform.',
+    descKey: 'arMortgageDesc' as const,
     delay: '0.4',
   },
   {
     id: 'aluxion-hla',
     title: 'Aluxion with HLA',
     thumbnail: thumbAluxionHla,
-    description:
-      'Healthcare management system in collaboration with Grupo HLA.',
+    descKey: 'aluxionDesc' as const,
     delay: '0.5',
   },
   {
     id: 'decentralfi',
     title: 'DecentralFi',
     thumbnail: thumbDcf,
-    description: 'A decentralized web application for cryptocurrencies.',
+    descKey: 'decentralFiDesc' as const,
     delay: '0.6',
   },
   {
     id: 'zumetrics',
     title: 'Zumetrics',
     thumbnail: thumbZume,
-    description: 'A web app to display social media metrics.',
+    descKey: 'zumetricsDesc' as const,
     delay: '0.7',
   },
 ];
@@ -241,6 +146,49 @@ const ProjectCard = ({ title, subtitle, description }) => (
 );
 
 const Works = () => {
+  const t = useTranslation();
+
+  const outstandingWorks = [
+    {
+      title: 'Busi',
+      subtitle: t.experience.busi.subtitle,
+      description: t.experience.busi.items,
+    },
+    {
+      title: 'Turpial Development',
+      subtitle: t.experience.turpial.subtitle,
+      description: t.experience.turpial.items,
+    },
+    {
+      title: 'Zumetrics',
+      subtitle: t.experience.zumetrics.subtitle,
+      description: t.experience.zumetrics.items,
+    },
+  ];
+
+  const myWorks = [
+    {
+      title: 'Nexxo',
+      subtitle: t.myWorks.nexxo.subtitle,
+      description: ['React Native', 'Expo', 'NestJS', 'PostgreSQL'],
+    },
+    {
+      title: 'Quimicas Polyresin',
+      subtitle: t.myWorks.quimicas.subtitle,
+      description: ['Next.js', 'TypeScript', 'TailwindCSS', 'Dynamic Search'],
+    },
+    {
+      title: 'Ponceleon',
+      subtitle: t.myWorks.ponceleon.subtitle,
+      description: ['HTML', 'CSS', 'JavaScript', 'React'],
+    },
+    {
+      title: 'Ovmafot',
+      subtitle: t.myWorks.ovmafot.subtitle,
+      description: ['Wix', 'Wordpress', 'Css'],
+    },
+  ];
+
   const memoizedFeaturedWorks = useMemo(
     () =>
       featuredWorks.map((work) => (
@@ -250,31 +198,26 @@ const Works = () => {
             title={work.title}
             thumbnail={work.thumbnail}
           >
-            {work.description}
+            {t.works[work.descKey]}
           </WorkGridItem>
         </Section>
       )),
-    []
+    [t]
   );
 
-  const memoizedExperienceCards = useMemo(
-    () =>
-      outstandingWorks.map((work) => (
-        <ExperienceCard key={work.title} {...work} />
-      )),
-    []
-  );
+  const memoizedExperienceCards = outstandingWorks.map((work) => (
+    <ExperienceCard key={work.title} {...work} />
+  ));
 
-  const memoizedProjectCards = useMemo(
-    () => myWorks.map((work) => <ProjectCard key={work.title} {...work} />),
-    []
-  );
+  const memoizedProjectCards = myWorks.map((work) => (
+    <ProjectCard key={work.title} {...work} />
+  ));
 
   return (
-    <ArticleLayout title="Works">
+    <ArticleLayout title={t.meta.worksTitle}>
       <Container>
         <Heading as="h3" fontSize={20} mb={4} variant="section-title">
-          Featured Works
+          {t.works.featuredTitle}
         </Heading>
 
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
@@ -284,7 +227,7 @@ const Works = () => {
         <Section delay={'0.8'}>
           <Divider my={6} />
           <Heading as="h3" fontSize={20} mb={4} variant="section-title">
-            Collaborations
+            {t.works.collaborationsTitle}
           </Heading>
         </Section>
 
@@ -293,9 +236,9 @@ const Works = () => {
             <WorkGridItem
               id="venezuela_locations"
               thumbnail={thumbDevels}
-              title="Devels - Venezuela locations"
+              title={t.works.devels}
             >
-              An API to get the different locations in Venezuela.
+              {t.works.develsDesc}
             </WorkGridItem>
           </Section>
         </SimpleGrid>
@@ -303,7 +246,7 @@ const Works = () => {
         <Section delay={'1.0'}>
           <Divider my={6} />
           <Heading as="h3" fontSize={20} mb={4} variant="section-title">
-            Previous Works
+            {t.works.previousTitle}
           </Heading>
         </Section>
 
@@ -312,9 +255,9 @@ const Works = () => {
             <WorkGridItem
               id="marvel-angular"
               thumbnail={thumbMarvel}
-              title="Marvel-Angular"
+              title={t.works.marvel}
             >
-              An app to see characters, comics, series from Marvel.
+              {t.works.marvelDesc}
             </WorkGridItem>
           </Section>
 
@@ -322,9 +265,9 @@ const Works = () => {
             <WorkGridItem
               id="simon-dice"
               thumbnail={thumbSimonSays}
-              title="Simon dice"
+              title={t.works.simon}
             >
-              Web page to play simon says 😄.
+              {t.works.simonDesc}
             </WorkGridItem>
           </Section>
         </SimpleGrid>
@@ -332,7 +275,7 @@ const Works = () => {
         <Section delay={'0.1'}>
           <Divider my={6} />
           <Heading as="h2" variant="section-title">
-            Professional Experience
+            {t.works.experienceTitle}
           </Heading>
 
           <SimpleGrid columns={1} gap={3}>

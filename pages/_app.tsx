@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <MainLayout router={router}>
+      <MainLayout router={router} locale={router.locale ?? 'en'}>
         <AnimatePresence mode="wait" initial={true}>
           <Component {...pageProps} />
         </AnimatePresence>

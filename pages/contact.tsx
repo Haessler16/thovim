@@ -15,9 +15,11 @@ import {
 } from '@chakra-ui/react';
 import emailjs from '@emailjs/browser';
 import { EmailIcon } from '@chakra-ui/icons';
+import { useTranslation } from '../lib/dictionaries';
 
 const Contact: NextPage = () => {
   const toast = useToast();
+  const t = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +34,9 @@ const Contact: NextPage = () => {
         )
         .then(
           (result) => {
-            // console.log(result.text);
             toast({
-              title: 'Message Send.',
-              description: 'Your message was send successfully',
+              title: t.contact.successTitle,
+              description: t.contact.successDesc,
               status: 'success',
               duration: 5000,
               isClosable: true,
@@ -45,8 +46,8 @@ const Contact: NextPage = () => {
           (error) => {
             console.log(error.text);
             toast({
-              title: 'Message Error.',
-              description: 'Something wrong happend',
+              title: t.contact.errorTitle,
+              description: t.contact.errorDesc,
               status: 'error',
               duration: 5000,
               isClosable: true,
@@ -60,11 +61,11 @@ const Contact: NextPage = () => {
   };
 
   return (
-    <ArticleLayout title="Contact me">
+    <ArticleLayout title={t.meta.contactTitle}>
       <Container>
         <Card>
           <CardHeader>
-            <Heading textAlign="center">Send me a message!</Heading>
+            <Heading textAlign="center">{t.contact.heading}</Heading>
           </CardHeader>
 
           <CardBody>
@@ -73,26 +74,30 @@ const Contact: NextPage = () => {
                 <Input
                   name="name"
                   variant="flushed"
-                  placeholder="Name"
+                  placeholder={t.contact.name}
                   required
                 />
                 <Input
                   name="email"
                   type="email"
                   variant="flushed"
-                  placeholder="example@corp.com"
+                  placeholder={t.contact.email}
                   required
                 />
               </Flex>
 
-              <Textarea placeholder="Message" name="message" required />
+              <Textarea
+                placeholder={t.contact.message}
+                name="message"
+                required
+              />
               <Center mt="6" w="full">
                 <Button
                   leftIcon={<EmailIcon />}
                   colorScheme="teal"
                   type="submit"
                 >
-                  Send
+                  {t.contact.send}
                 </Button>
               </Center>
             </form>

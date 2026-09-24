@@ -3,8 +3,11 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Meta, WorkImage, Title } from '../../components/WorksDetails';
 import { Paragraph } from '../../components/Paragraph';
 import { ArticleLayout } from '../../layouts/Article';
+import { useTranslation } from '../../lib/dictionaries';
 
 const InkDrop = () => {
+  const t = useTranslation();
+
   return (
     <ArticleLayout title="Simon dice">
       <Container>
@@ -12,27 +15,23 @@ const InkDrop = () => {
           Simon dice <Badge>2018</Badge>
         </Title>
 
-        <Paragraph>
-          This is a famous game that most of us have been able to play once, so
-          for this occasion, it seemed like a good challenge to recreate this
-          incredible game.
-        </Paragraph>
+        <Paragraph>{t.workPages.simon.p1}</Paragraph>
 
         <List ml={4} my={4}>
           <ListItem>
-            <Meta>Website</Meta>
+            <Meta>{t.worksDetails.website}</Meta>
             <Link href="https://simon-dice-peach.vercel.app/">
               https://simon-dice-peach.vercel.app/ <ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
 
           <ListItem>
-            <Meta>Platform</Meta>
+            <Meta>{t.worksDetails.platform}</Meta>
             <span>Web</span>
           </ListItem>
 
           <ListItem>
-            <Meta>Stack</Meta>
+            <Meta>{t.worksDetails.stack}</Meta>
             <span>HTML, CSS, Javacript</span>
           </ListItem>
 

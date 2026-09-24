@@ -17,13 +17,14 @@ import {
 import { useMemo } from 'react';
 import { Section } from '../components/Section';
 import { Paragraph } from '../components/Paragraph';
+import { useTranslation } from '../lib/dictionaries';
 
 import Tilt from 'react-parallax-tilt';
 
 import {
-  SiAdobeillustrator,
-  SiAngularjs,
-  SiCss3,
+  SiFigma,
+  SiAngular,
+  SiCss,
   SiNodedotjs,
   SiPython,
   SiReact,
@@ -43,7 +44,7 @@ const mySkills = [
     title: 'Angular',
     description: '',
     attr: ['Angular Universal', 'Language Services'],
-    img: SiAngularjs,
+    img: SiAngular,
     bgColor: 'brown',
   },
   {
@@ -78,21 +79,23 @@ const mySkills = [
     title: 'Css',
     description: '',
     attr: ['Material', 'Bootstap', 'Tailwind', 'Sass', 'Framer Motion'],
-    img: SiCss3,
+    img: SiCss,
     bgColor: 'deepskyblue',
   },
   {
     title: 'Design',
     description: '',
     attr: ['Illustrator', 'Photoshop', 'Figma', 'Corel Draw', 'After Effects'],
-    img: SiAdobeillustrator,
+    img: SiFigma,
     bgColor: 'chocolate',
   },
 ];
 
 const Wrapper = ({ children }) => {
+  const t = useTranslation();
+
   return (
-    <ArticleLayout title="About me">
+    <ArticleLayout title={t.meta.aboutTitle}>
       <Container>{children}</Container>
     </ArticleLayout>
   );
@@ -127,34 +130,41 @@ const SkillCard = ({ title, img, bgColor, attr }) => (
 
 const AboutMe: NextPage = () => {
   const bgColor = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200');
+  const t = useTranslation();
 
   const skillCards = useMemo(
     () => mySkills.map((skill) => <SkillCard key={skill.title} {...skill} />),
     []
   );
 
+  const introParts = useMemo(() => {
+    const [beforeB, rest] = t.about.intro.split('<b>');
+    const [bold, afterB] = rest.split('</b>');
+    const [line1, line2] = afterB.split('<br/>');
+    return { beforeB, bold, line1, line2 };
+  }, [t]);
+
   return (
     <Wrapper>
       <Section>
         <Heading as="h2" variant="section-title">
-          This is me:
+          {t.about.title}
         </Heading>
 
         <Box borderRadius="lg" bg={bgColor} mb={6} p={3} alignItems="center">
           <Paragraph>
-            Passionate about the world of technology, I have dedicated myself to
-            the development of web, mobile, and decentralized applications for
-            <b> over 8 years</b>. <br /> My relentless pursuit of knowledge and
-            hands-on experience in these domains has been driven by
-            perseverance, discipline, and a strong desire to keep learning, all
-            aimed at achieving my goals.
+            {introParts.beforeB}
+            <b>{introParts.bold}</b>
+            {introParts.line1}
+            <br />
+            {introParts.line2}
           </Paragraph>
         </Box>
       </Section>
 
       <Section delay={'0.3'}>
         <Heading as="h2" variant="section-title">
-          Skills:
+          {t.about.skillsTitle}
         </Heading>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
