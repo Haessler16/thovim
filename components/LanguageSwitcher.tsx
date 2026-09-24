@@ -19,6 +19,11 @@ const flagByLocale: Record<Locale, string> = {
   pt: '🇧🇷',
 };
 
+/** Persists the chosen locale for Next.js automatic locale detection. */
+const setLocaleCookie = (nextLocale: Locale) => {
+  document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000; samesite=lax`;
+};
+
 export const LanguageSwitcher = () => {
   const router = useRouter();
   const { locale, pathname, asPath, query } = router;
@@ -27,7 +32,7 @@ export const LanguageSwitcher = () => {
   const changeLocale = (nextLocale: Locale) => {
     if (nextLocale === locale || isChanging) return;
     setIsChanging(true);
-    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000; samesite=lax`;
+    setLocaleCookie(nextLocale);
     router.push({ pathname, query }, asPath, { locale: nextLocale });
   };
 

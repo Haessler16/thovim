@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { Container, List, ListItem } from '@chakra-ui/react';
+import { List, ListItem } from '@chakra-ui/react';
 import { Meta, WorkImage, Title } from '../../components/WorksDetails';
 import { ArticleLayout } from '../../layouts/Article';
 import { Section } from '../../components/Section';

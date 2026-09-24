@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import {
-  Container,
   Badge,
   Link,
   List,
@@ -9,7 +8,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Meta, WorkImage, Title } from '../../components/WorksDetails';
+import { Meta, Title } from '../../components/WorksDetails';
 import { ArticleLayout } from '../../layouts/Article';
 import { Section } from '../../components/Section';
 import { Paragraph } from '../../components/Paragraph';

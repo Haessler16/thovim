@@ -33,7 +33,7 @@ const Contact: NextPage = () => {
           '6tBakpe3jeWHb7uG7'
         )
         .then(
-          (result) => {
+          () => {
             toast({
               title: t.contact.successTitle,
               description: t.contact.successDesc,

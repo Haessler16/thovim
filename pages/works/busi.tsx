@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import {
-  Container,
   Badge,
   Link,
   List,

@@ -2,7 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Box, Spinner } from '@chakra-ui/react';
 import { WebGLRenderer } from 'three';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import type { OrthographicCamera } from 'three';
 import { loadGLTFModel } from '../lib/model';
 
 function easeOutCirc(x) {
@@ -13,7 +14,7 @@ export const VoxelDog = () => {
   const refContainer = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [renderer, setRenderer] = useState<WebGLRenderer>();
-  const [camera, setCamera] = useState();
+  const [, setCamera] = useState<OrthographicCamera>();
   const [target] = useState(new THREE.Vector3(-0.5, 1.2, 0));
   const [initialCameraPosition] = useState(
     new THREE.Vector3(
@@ -24,7 +25,7 @@ export const VoxelDog = () => {
   );
 
   const [scene] = useState(new THREE.Scene());
-  const [controls, setControls] = useState();
+  const [, setControls] = useState<OrbitControls>();
 
   const handleWindowResize = useCallback(() => {
     const { current: container } = refContainer;
