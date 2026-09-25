@@ -14,7 +14,74 @@ a {
 * {
   box-sizing: border-box;
 }
-/* 
-.center{
-  display
-} */
+
+/* ------------------------------------------------------------------
+   HAESSLER OS utilities.
+   Additive only: nothing above this line changes, so the legacy site
+   keeps rendering exactly as before. Used by the experience/recruiter
+   layer instead of shipping another CSS framework.
+   ------------------------------------------------------------------ */
+
+/* Very low-contrast engineering grid. 3% accent budget lives elsewhere. */
+.os-grid-bg {
+  background-image: linear-gradient(
+      to right,
+      rgba(26, 39, 48, 0.55) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(26, 39, 48, 0.55) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* CRT scanline overlay, intentionally near-invisible. */
+.os-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(232, 241, 245, 0.022) 0px,
+    rgba(232, 241, 245, 0.022) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.os-panel {
+  position: relative;
+  border: 1px solid #1a2730;
+  background-color: #0b1117;
+}
+
+/* Accent used sparingly: status LEDs and small indicators. */
+.os-led {
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12), 0 0 10px rgba(0, 229, 255, 0.45);
+}
+
+.os-caret::after {
+  content: '_';
+  animation: os-blink 1.1s step-end infinite;
+}
+
+@keyframes os-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Only animate while the tab is visible and motion is welcome. */
+@media (prefers-reduced-motion: reduce) {
+  .os-caret::after {
+    animation: none;
+  }
+
+  .os-reveal-force {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
