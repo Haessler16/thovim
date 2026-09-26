@@ -17,8 +17,6 @@ export interface ProfileLinks {
   linkedin: string;
   github: string;
   email: string;
-  /** No public CV file is versioned in /public yet. */
-  cv: string | null;
   /** No public phone/WhatsApp number is documented in this repo. */
   whatsapp: string | null;
 }
@@ -47,9 +45,26 @@ export const profile: Profile = {
     linkedin: 'https://www.linkedin.com/in/haessler-leon/',
     github: 'https://github.com/Haessler16/',
     email: 'haesslertvm@gmail.com',
-    cv: null,
     whatsapp: null,
   },
+};
+
+/**
+ * CV download links, one per experience language (Google Drive).
+ *
+ * Not `as const` / not nullable-by-accident: set to `null` to hide every CV
+ * button at once if a link stops working. The UI resolves the active locale
+ * through `resolveCvLink`; Spanish (legacy-only locale) falls back to EN.
+ */
+export const cvByLocale: { en: string; pt: string } | null = {
+  en: 'https://drive.google.com/file/d/1Vou2Jy-KtSa8T8aL2A47JdROfeTFuOky/view?usp=drive_link',
+  pt: 'https://drive.google.com/file/d/1ixHdQPLYuUVD9957AP9Nq85NxdhK_CJA/view?usp=drive_link',
+};
+
+/** CV link for the active locale; EN is the fallback. `null` hides the UI. */
+export const resolveCvLink = (locale: string | undefined): string | null => {
+  if (!cvByLocale) return null;
+  return locale === 'pt' ? cvByLocale.pt : cvByLocale.en;
 };
 
 /** Core stack, in the order used by the CV and the recruiter page. */
@@ -302,6 +317,7 @@ export const worldAreaIds = [
   'architecture',
   'ai',
   'human',
+  'nexxo',
 ] as const;
 export type WorldAreaId = (typeof worldAreaIds)[number];
 
@@ -357,6 +373,15 @@ export const worldAreas: WorldArea[] = [
   {
     id: 'human',
     accent: 'osAmber',
+    caseId: null,
+    headlineMetricId: null,
+  },
+  {
+    // NEXXO PRODUCT LAB: personal fintech product (§16 — a dimension, not a
+    // ranking). Facts live in `lib/experience/nexxo.ts`; no case file and no
+    // headline metric because none are published.
+    id: 'nexxo',
+    accent: 'osElectricBlue',
     caseId: null,
     headlineMetricId: null,
   },

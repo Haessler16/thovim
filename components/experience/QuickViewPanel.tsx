@@ -23,7 +23,9 @@ import {
   lookingForIds,
   profile,
   recruiter,
+  resolveCvLink,
 } from '../../lib/experience/content';
+import { useRouter } from 'next/router';
 import { experienceCases } from '../../lib/experience/cases';
 import { featuredMetricIds, metrics } from '../../lib/experience/metrics';
 import { useExperienceTranslation } from '../../lib/experience/dictionaries';
@@ -47,14 +49,16 @@ interface QuickViewPanelProps {
  */
 export const QuickViewPanel = ({ onClose }: QuickViewPanelProps) => {
   const t = useExperienceTranslation();
+  const { locale } = useRouter();
+  const cvLink = resolveCvLink(locale);
   const featuredMetrics = featuredMetricIds.map((id) => metrics[id]);
 
   const contacts: Array<{ label: string; href: string; external: boolean }> = [
     { label: t.common.email, href: `mailto:${profile.links.email}`, external: false },
     { label: t.common.linkedin, href: profile.links.linkedin, external: true },
     { label: t.common.github, href: profile.links.github, external: true },
-    ...(profile.links.cv
-      ? [{ label: t.common.cv, href: profile.links.cv, external: true }]
+    ...(cvLink
+      ? [{ label: t.common.cv, href: cvLink, external: true }]
       : []),
     ...(profile.links.whatsapp
       ? [

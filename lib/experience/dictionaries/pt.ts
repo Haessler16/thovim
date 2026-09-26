@@ -1,4 +1,11 @@
 import type { WorldAreaId } from '../content';
+import type {
+  NexxoConceptId,
+  NexxoFlowId,
+  NexxoPrincipleKey,
+  NexxoTimelineKey,
+  NexxoUseCaseId,
+} from '../nexxo';
 import type { ExperienceDictionary } from './en';
 
 /**
@@ -151,7 +158,17 @@ export const pt: ExperienceDictionary = {
       architecture: 'ARQUITETURA',
       ai: 'IA',
       human: 'HUMANO',
+      nexxo: 'NEXXO',
     } satisfies Record<WorldAreaId, string>,
+    /** Drawer de 20 segundos para a área NEXXO (§17). */
+    nexxo: {
+      tagline: 'PRODUCT LAB',
+      subtitle: 'Produto Fintech Pessoal',
+      oneLiner:
+        'Despesas compartilhadas. Referência de moeda. Valor indexado. Neteo automatizado.',
+      explore: 'EXPLORAR PRODUTO',
+      caseStudy: 'ABRIR PRODUCT LAB',
+    },
     areas: {
       architecture:
         'Como uma requisição atravessa o sistema — e o que cada camada custa.',
@@ -167,6 +184,88 @@ export const pt: ExperienceDictionary = {
       interests: 'INTERESSES',
       close: 'FECHAR',
     },
+  },
+  /**
+   * Copy do NEXXO PRODUCT LAB. Toda afirmação vem do site oficial
+   * (nexxoapp.com, /about) ou da página legacy `/works/nexxo`.
+   */
+  nexxo: {
+    eyebrow: 'NEXXO',
+    title: 'PRODUCT LAB',
+    category: 'PRODUTO PESSOAL / FINTECH',
+    problemTitle: 'O PROBLEMA',
+    problem:
+      'Dividir despesas de forma justa fica difícil quando a moeda local muda de valor entre o momento do pagamento e o momento em que o grupo acerta o saldo.',
+    productTitle: 'O PRODUTO',
+    product:
+      'Nexxo é uma plataforma de despesas compartilhadas que introduz indexação monetária: o gasto é registrado na moeda local mantendo um valor de referência equivalente, então os saldos permanecem justos enquanto estiverem abertos.',
+    conceptsTitle: 'CONCEITOS CENTRAIS',
+    concepts: {
+      sharedExpenses: 'Despesas compartilhadas',
+      currencyReference: 'Referência de moeda',
+      indexing: 'Indexação monetária',
+      netting: 'Neteo',
+      settlement: 'Liquidação',
+    } satisfies Record<NexxoConceptId, string>,
+    useCasesTitle: 'CASOS DE USO',
+    useCases: {
+      friendsTravelling: 'Amigos viajando juntos',
+      couples: 'Casais',
+      roommates: 'Colegas de casa',
+      families: 'Famílias',
+      smallTeams: 'Equipes pequenas',
+      volatileEnvironments: 'Ambientes de moeda volátil',
+    } satisfies Record<NexxoUseCaseId, string>,
+    flowTitle: 'FLUXO DE DADOS',
+    flowHint: 'PASSE O CURSOR EM UM NÓ',
+    flow: {
+      expense: 'DESPESA',
+      localCurrency: 'MOEDA LOCAL',
+      referenceValue: 'VALOR DE REFERÊNCIA',
+      groupBalances: 'SALDOS DO GRUPO',
+      netting: 'NETEO',
+      settlement: 'LIQUIDAÇÃO',
+    } satisfies Record<NexxoFlowId, string>,
+    flowDetail: {
+      expense: 'Alguém paga pelo grupo e registra a despesa.',
+      localCurrency: 'O valor é capturado na moeda em que foi pago.',
+      referenceValue: 'A despesa é ancorada à referência estável escolhida pelo grupo.',
+      groupBalances: 'A posição de cada membro é atualizada pelo valor indexado.',
+      netting: 'Saldos opostos se cancelam automaticamente.',
+      settlement: 'O que resta é um único valor justo para liquidar.',
+    } satisfies Record<NexxoFlowId, string>,
+    whyTitle: 'POR QUE EU CONSTRUI',
+    whyBody:
+      'O Nexxo nasceu de um problema real: dividir despesas na Venezuela, onde inflação e desvalorização podem corroer o valor real do dinheiro entre o momento em que alguém paga e o momento em que é reembolsado. O neteo indexado mantém o valor justo enquanto o saldo está aberto.',
+    principles: {
+      fairness: 'Equidade automatizada — pagar o justo não deveria exigir matemática complexa.',
+      speed: 'O dinheiro perde valor com o tempo; a liquidação deve ser instantânea.',
+      protection: 'Valores indexados protegem o poder de compra de quem paga e de quem recebe.',
+      community: 'Uma ferramenta para manter a harmonia entre amigos.',
+    } satisfies Record<NexxoPrincipleKey, string>,
+    previewTitle: 'PREVISÃO DE CONCEITO',
+    previewTripLabel: 'VIAGEM',
+    previewIllustrative: 'ILUSTRATIVO — DO SITE OFICIAL',
+    engineeringTitle: 'ENGENHARIA',
+    engineeringLead:
+      'Verificado a partir do produto e do portfólio legacy. Nada especulativo.',
+    stackLabel: 'STACK',
+    platformsLabel: 'PLATAFORMAS',
+    capabilitiesLabel: 'CAPACIDADES',
+    timelineTitle: 'ORIGEM',
+    timeline: {
+      y2024:
+        'Formalizamos o problema: grupos adiantam valor e recuperam menos dele quando o reembolso chega tarde.',
+      y2025:
+        'Transformamos esse aprendizado em fluxos de produto, linguagem e conteúdo educativo sobre neteo indexado e taxa BCV.',
+      y2026:
+        'Ampliamos a validação pública com a lista de espera, páginas educativas e documentação.',
+    } satisfies Record<NexxoTimelineKey, string>,
+    dataSources:
+      'Referências públicas: Banco Central da Venezuela (câmbio oficial) e FMI (contexto de inflação).',
+    explore: 'EXPLORAR O NEXXO',
+    caseStudy: 'LER O ESTUDO DE CASO',
+    backToWorld: 'VOLTAR AO HAESSLER WORLD',
   },
   quickView: {
     title: 'BRIEF PARA RECRUTADOR',

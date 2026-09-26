@@ -7,6 +7,7 @@ import { Contact } from '../components/experience/Contact';
 import { ExperienceShell } from '../components/experience/ExperienceShell';
 import { Hero } from '../components/experience/Hero';
 import { HumanExe } from '../components/experience/HumanExe';
+import { NexxoLab } from '../components/experience/NexxoLab';
 import { Now } from '../components/experience/Now';
 import { ProblemLab } from '../components/experience/ProblemLab';
 import { Proof } from '../components/experience/Proof';
@@ -18,8 +19,10 @@ import type { PageWithLayout } from '../lib/layout';
  * `/` — the HAESSLER WORLD experience.
  *
  * Section order follows one continuous story (system → proof → tools →
- * problems → cases → architecture → AI → human → now → contact), so the page
- * never feels like unrelated blocks stapled together.
+ * problems → cases → architecture → AI → Nexxo product lab → human → now →
+ * contact), so the page never feels like unrelated blocks stapled together.
+ * Nexxo (§16 of the Nexxo brief) complements the flagship cases as the
+ * "building from zero" dimension — it is not a ranking.
  *
  * The legacy portfolio is untouched and still online: `/classic` carries the
  * original homepage, and every `/about`, `/works` and `/contact` route still
@@ -39,6 +42,7 @@ const Home: PageWithLayout = () => (
     <CaseFiles />
     <ArchitectureLab />
     <AILab />
+    <NexxoLab />
     <HumanExe />
     <Now />
     <Contact />

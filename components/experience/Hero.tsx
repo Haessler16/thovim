@@ -36,6 +36,7 @@ import {
 } from '../../lib/experience/content';
 import { experienceCases } from '../../lib/experience/cases';
 import { metrics, metricsForCase } from '../../lib/experience/metrics';
+import { nexxoProductUrl } from '../../lib/experience/nexxo';
 import { useExperienceTranslation } from '../../lib/experience/dictionaries';
 
 /**
@@ -214,6 +215,37 @@ const AreaProofPanel = ({
               </Wrap>
             </>
           )}
+          {!caseCopy && area.id === 'nexxo' && (
+            <>
+              {/** §17: recruiter understands Nexxo in ~20 seconds. */}
+              <Text fontSize="sm" color="osTextSecondary">
+                {t.world.nexxo.subtitle}
+              </Text>
+              <Text
+                mt={5}
+                fontFamily="mono"
+                fontSize="sm"
+                lineHeight="1.8"
+                color="osText"
+              >
+                {t.world.nexxo.oneLiner}
+              </Text>
+              <Wrap spacing={2} mt={5}>
+                <Chip active accentColor={accent}>
+                  {t.nexxo.concepts.sharedExpenses}
+                </Chip>
+                <Chip active accentColor={accent}>
+                  {t.nexxo.concepts.currencyReference}
+                </Chip>
+                <Chip active accentColor={accent}>
+                  {t.nexxo.concepts.indexing}
+                </Chip>
+                <Chip active accentColor={accent}>
+                  {t.nexxo.concepts.netting}
+                </Chip>
+              </Wrap>
+            </>
+          )}
 
           {caseMetrics.length > 0 && (
             <>
@@ -282,25 +314,56 @@ const AreaProofPanel = ({
                 {t.sections.cases.labels.live} ↗
               </Link>
             )}
-            {!caseFile && (
-              <Link
-                as={NextLink}
-                href={
-                  area.id === 'architecture'
-                    ? '/#architecture'
-                    : area.id === 'ai'
-                      ? '/#ai-lab'
-                      : '/#human'
-                }
-                fontFamily="mono"
-                fontSize="xs"
-                letterSpacing="0.14em"
-                textTransform="uppercase"
-                color={accent}
-                _hover={{ color: 'osText' }}
-              >
-                {t.world.labels.openSection} →
-              </Link>
+            {area.id === 'nexxo' ? (
+              <>
+                <Link
+                  as="a"
+                  href={nexxoProductUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  fontFamily="mono"
+                  fontSize="xs"
+                  letterSpacing="0.14em"
+                  textTransform="uppercase"
+                  color={accent}
+                  _hover={{ color: 'osText' }}
+                >
+                  {t.world.nexxo.explore} ↗
+                </Link>
+                <Link
+                  as={NextLink}
+                  href="/#nexxo-lab"
+                  fontFamily="mono"
+                  fontSize="xs"
+                  letterSpacing="0.14em"
+                  textTransform="uppercase"
+                  color={accent}
+                  _hover={{ color: 'osText' }}
+                >
+                  {t.world.nexxo.caseStudy} →
+                </Link>
+              </>
+            ) : (
+              !caseFile && (
+                <Link
+                  as={NextLink}
+                  href={
+                    area.id === 'architecture'
+                      ? '/#architecture'
+                      : area.id === 'ai'
+                        ? '/#ai-lab'
+                        : '/#human'
+                  }
+                  fontFamily="mono"
+                  fontSize="xs"
+                  letterSpacing="0.14em"
+                  textTransform="uppercase"
+                  color={accent}
+                  _hover={{ color: 'osText' }}
+                >
+                  {t.world.labels.openSection} →
+                </Link>
+              )
             )}
           </Flex>
         </Box>

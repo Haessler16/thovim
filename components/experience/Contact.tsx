@@ -1,10 +1,16 @@
 import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 import { ExperienceSection } from './ExperienceSection';
 import { MagneticButton } from '../ui/MagneticButton';
 import { Reveal } from '../ui/Reveal';
-import { profile, sectionAnchor, sectionIndex } from '../../lib/experience/content';
+import {
+  profile,
+  resolveCvLink,
+  sectionAnchor,
+  sectionIndex,
+} from '../../lib/experience/content';
 import { useExperienceTranslation } from '../../lib/experience/dictionaries';
 
 /**
@@ -17,6 +23,7 @@ import { useExperienceTranslation } from '../../lib/experience/dictionaries';
  */
 export const Contact = () => {
   const t = useExperienceTranslation();
+  const cvLink = resolveCvLink(useRouter().locale);
 
   return (
     <ExperienceSection
@@ -52,8 +59,8 @@ export const Contact = () => {
             {t.common.github}
           </MagneticButton>
 
-          {profile.links.cv && (
-            <MagneticButton external href={profile.links.cv} variant="outline">
+          {cvLink && (
+            <MagneticButton external href={cvLink} variant="outline">
               {t.common.cv}
             </MagneticButton>
           )}

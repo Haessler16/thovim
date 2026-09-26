@@ -26,6 +26,7 @@ const ACCENT_HEX: Record<WorldAreaId, number> = {
   architecture: 0x00e5ff,
   ai: 0xe14fd1,
   human: 0xf5a97f,
+  nexxo: 0x3d8bff,
 };
 
 /**
@@ -40,6 +41,9 @@ export const AREA_POSITIONS: Record<WorldAreaId, [number, number, number]> = {
   architecture: [2.35, 0.9, -1.05],
   ai: [-1.05, 3.05, -1.35],
   human: [1.15, 3.1, -1.5],
+  // The product lab stands closer than the rest: a personal product deserves
+  // to be discovered, not hunted for (§3).
+  nexxo: [-0.1, 3.35, 1.1],
 };
 
 /**
@@ -181,6 +185,45 @@ function buildAreaObject(
       page.rotation.x = -Math.PI / 2;
       page.position.y = 0.02;
       group.add(cover, page);
+      break;
+    }
+    case 'nexxo': {
+      // NEXXO PRODUCT LAB: floating phone with an indexed-value screen and
+      // two orbiting transaction nodes (§2 — a product lab, not a neon
+      // crypto scene; electric blue + cyan only).
+      const body = new THREE.Mesh(
+        new THREE.BoxGeometry(0.28, 0.54, 0.03),
+        new THREE.MeshStandardMaterial({
+          color: 0x111a22,
+          metalness: 0.55,
+          roughness: 0.35,
+        })
+      );
+      const screen = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.24, 0.46),
+        new THREE.MeshBasicMaterial({ color: accent })
+      );
+      screen.position.z = 0.017;
+      const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x00e5ff });
+      const nodeGeometry = new THREE.SphereGeometry(0.028, 12, 12);
+      const nodeA = new THREE.Mesh(nodeGeometry, nodeMaterial);
+      nodeA.position.set(0.24, 0.18, 0);
+      const nodeB = new THREE.Mesh(nodeGeometry, nodeMaterial);
+      nodeB.position.set(-0.24, -0.2, 0);
+      const linkMaterial = new THREE.LineBasicMaterial({
+        color: 0x00e5ff,
+        transparent: true,
+        opacity: 0.5,
+      });
+      const link = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(0.24, 0.18, 0),
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(-0.24, -0.2, 0),
+        ]),
+        linkMaterial
+      );
+      group.add(body, screen, nodeA, nodeB, link);
       break;
     }
   }
@@ -328,6 +371,9 @@ export function createWorldObjects(
           entry.object.rotation.x += delta * 0.25;
         } else if (entry.areaId === 'mobile' || entry.areaId === 'web3') {
           entry.object.rotation.y = Math.sin(elapsed * 0.5) * 0.25;
+        } else if (entry.areaId === 'nexxo') {
+          // The product lab keeps a slow, confident presence — no gadgets.
+          entry.object.rotation.y = Math.sin(elapsed * 0.35) * 0.3;
         }
       });
     },

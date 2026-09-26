@@ -1,9 +1,10 @@
 import { Box, Container, Flex, Heading, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 import { MagneticButton } from '../ui/MagneticButton';
 import { useExperienceTranslation } from '../../lib/experience/dictionaries';
-import { profile } from '../../lib/experience/content';
+import { profile, resolveCvLink } from '../../lib/experience/content';
 
 interface ContactAction {
   key: string;
@@ -17,7 +18,8 @@ interface ContactAction {
  */
 export const RecruiterCTA = () => {
   const t = useExperienceTranslation();
-  const { email, linkedin, github, cv, whatsapp } = profile.links;
+  const cvLink = resolveCvLink(useRouter().locale);
+  const { email, linkedin, github, whatsapp } = profile.links;
 
   const actions: ContactAction[] = [
     { key: 'email', label: t.common.email, href: `mailto:${email}` },
@@ -25,8 +27,8 @@ export const RecruiterCTA = () => {
     { key: 'github', label: t.common.github, href: github },
   ];
 
-  if (cv) {
-    actions.push({ key: 'cv', label: t.common.cv, href: cv });
+  if (cvLink) {
+    actions.push({ key: 'cv', label: t.common.cv, href: cvLink });
   }
 
   if (whatsapp) {

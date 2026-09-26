@@ -8,7 +8,6 @@ import {
   sectionAnchor,
   sectionIndex,
 } from '../../lib/experience/content';
-import { metrics } from '../../lib/experience/metrics';
 import { useExperienceTranslation } from '../../lib/experience/dictionaries';
 
 /**

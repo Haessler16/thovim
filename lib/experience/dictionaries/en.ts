@@ -11,6 +11,13 @@ import type {
   WhatIBuildId,
   WorldAreaId,
 } from '../content';
+import type {
+  NexxoConceptId,
+  NexxoFlowId,
+  NexxoPrincipleKey,
+  NexxoTimelineKey,
+  NexxoUseCaseId,
+} from '../nexxo';
 import type { CaseId } from '../cases';
 import type { MetricId } from '../metrics';
 
@@ -173,7 +180,17 @@ export const en = {
       architecture: 'ARCHITECTURE',
       ai: 'AI',
       human: 'HUMAN',
+      nexxo: 'NEXXO',
     } satisfies Record<WorldAreaId, string>,
+    /** 20-second recruiter drawer for the NEXXO area (§17). */
+    nexxo: {
+      tagline: 'PRODUCT LAB',
+      subtitle: 'Personal Fintech Product',
+      oneLiner:
+        'Shared expenses. Currency reference. Indexed value. Automated netting.',
+      explore: 'EXPLORE PRODUCT',
+      caseStudy: 'OPEN PRODUCT LAB',
+    },
     /** Panel copy for areas without a case file (one sentence each). */
     areas: {
       architecture:
@@ -190,6 +207,89 @@ export const en = {
       interests: 'INTERESTS',
       close: 'CLOSE',
     },
+  },
+  /**
+   * NEXXO PRODUCT LAB copy. Every claim is sourced from the official site
+   * (nexxoapp.com, /about) or the legacy `/works/nexxo` page; see the data
+   * layer header in `lib/experience/nexxo.ts`.
+   */
+  nexxo: {
+    eyebrow: 'NEXXO',
+    title: 'PRODUCT LAB',
+    category: 'PERSONAL PRODUCT / FINTECH',
+    problemTitle: 'THE PROBLEM',
+    problem:
+      'Shared expenses become difficult to settle fairly when the local currency changes in value between the moment an expense is paid and the moment the group settles the balance.',
+    productTitle: 'THE PRODUCT',
+    product:
+      'Nexxo is a platform for shared expenses that introduces monetary indexing: an expense is recorded in local currency while keeping an equivalent reference value, so balances stay fair while they are open.',
+    conceptsTitle: 'CORE CONCEPTS',
+    concepts: {
+      sharedExpenses: 'Shared expenses',
+      currencyReference: 'Currency reference',
+      indexing: 'Monetary indexing',
+      netting: 'Netting',
+      settlement: 'Settlement',
+    } satisfies Record<NexxoConceptId, string>,
+    useCasesTitle: 'USE CASES',
+    useCases: {
+      friendsTravelling: 'Friends travelling together',
+      couples: 'Couples',
+      roommates: 'Roommates',
+      families: 'Families',
+      smallTeams: 'Small teams',
+      volatileEnvironments: 'Volatile-currency environments',
+    } satisfies Record<NexxoUseCaseId, string>,
+    flowTitle: 'DATA FLOW',
+    flowHint: 'HOVER A NODE',
+    flow: {
+      expense: 'EXPENSE',
+      localCurrency: 'LOCAL CURRENCY',
+      referenceValue: 'REFERENCE VALUE',
+      groupBalances: 'GROUP BALANCES',
+      netting: 'NETTING',
+      settlement: 'SETTLEMENT',
+    } satisfies Record<NexxoFlowId, string>,
+    flowDetail: {
+      expense: 'Someone pays for the group and records it.',
+      localCurrency: 'The amount is captured in the currency it was paid in.',
+      referenceValue: 'The expense is anchored to the group’s chosen stable reference.',
+      groupBalances: 'Every member’s position updates from the indexed value.',
+      netting: 'Opposite balances cancel out automatically.',
+      settlement: 'What remains is a single, fair amount to settle.',
+    } satisfies Record<NexxoFlowId, string>,
+    whyTitle: 'WHY I BUILT IT',
+    whyBody:
+      'Nexxo started from a real problem: sharing expenses in Venezuela, where inflation and devaluation can erode the real value of money between the moment someone pays and the moment they are reimbursed. Indexed netting keeps the value fair while the balance is open.',
+    principles: {
+      fairness: 'Automated equity — paying what is fair should not require complex math.',
+      speed: 'Money loses value over time; settlement should be instant.',
+      protection: 'Indexed values protect the purchasing power of who pays and who receives.',
+      community: 'A tool to keep harmony between friends.',
+    } satisfies Record<NexxoPrincipleKey, string>,
+    previewTitle: 'CONCEPT PREVIEW',
+    previewTripLabel: 'TRIP',
+    previewIllustrative: 'ILLUSTRATIVE — FROM THE OFFICIAL SITE',
+    engineeringTitle: 'ENGINEERING',
+    engineeringLead:
+      'Verified from the product and the legacy portfolio. Nothing speculative.',
+    stackLabel: 'STACK',
+    platformsLabel: 'PLATFORMS',
+    capabilitiesLabel: 'CAPABILITIES',
+    timelineTitle: 'ORIGIN',
+    timeline: {
+      y2024:
+        'Formalized the problem: groups advance value and recover less of it when reimbursement comes late.',
+      y2025:
+        'Turned that learning into product flows, language and educational content on indexed netting and the BCV rate.',
+      y2026:
+        'Expanded public validation with the waitlist, educational pages and documentation.',
+    } satisfies Record<NexxoTimelineKey, string>,
+    dataSources:
+      'Public references: Banco Central de Venezuela (official exchange rate) and IMF (inflation context).',
+    explore: 'EXPLORE NEXXO',
+    caseStudy: 'READ THE CASE STUDY',
+    backToWorld: 'BACK TO HAESSLER WORLD',
   },
   quickView: {
     title: 'RECRUITER BRIEF',
