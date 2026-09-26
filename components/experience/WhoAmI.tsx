@@ -57,7 +57,7 @@ export const WhoAmI = () => {
             <ReadoutRow label={t.common.location}>{profile.location}</ReadoutRow>
 
             <ReadoutRow label={t.common.years}>
-              {metrics.years.value} — {t.common.yearsValue}
+              {t.common.yearsValue}
             </ReadoutRow>
 
             <ReadoutRow label={t.sections.system.focusLabel}>

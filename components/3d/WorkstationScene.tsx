@@ -1,9 +1,13 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { createMascot } from './Mascot';
 import { createParticles } from './Particles';
+import {
+  AREA_POSITIONS,
+  createWorldObjects,
+} from './WorldObjects';
 import {
   SceneContainer,
   disposeObjectTree,
@@ -12,18 +16,37 @@ import {
   type SceneLifecycle,
   type SceneStatus,
 } from './SceneContainer';
+import type { WorldAreaId } from '../../lib/experience/content';
 
 interface WorkstationSceneProps {
   label?: string;
   onStatus?: (status: SceneStatus) => void;
+  /** Monitor screen copy — comes from the dictionary, not hardcoded. */
+  systemName: string;
+  systemStatus: string;
+  domains: string[];
+  /** Hover over a world object (null = pointer left every object). */
+  onHoverArea?: (areaId: WorldAreaId | null) => void;
+  /** An area object was clicked; the hero opens the proof panel. */
+  onActivateArea?: (areaId: WorldAreaId) => void;
+  /** Imperative API handed to the hero once the scene exists. */
+  onReady?: (api: WorldSceneApi) => void;
+}
+
+export interface WorldSceneApi {
+  /** Flies the camera to an area (or back to the default framing on null). */
+  focusArea: (areaId: WorldAreaId | null) => void;
 }
 
 /**
- * Builds the monitor screen as a canvas texture: HAESSLER WORLD identity,
- * SYSTEM ONLINE status and the four domains — drawn once, no per-frame
- * texture updates.
+ * Builds the monitor screen from dictionary strings: world identity, status
+ * and the four domains — drawn once, no per-frame texture updates.
  */
-function buildScreenTexture(): THREE.CanvasTexture {
+function buildScreenTexture(
+  systemName: string,
+  systemStatus: string,
+  domains: string[]
+): THREE.CanvasTexture {
   const canvas = document.createElement('canvas');
   canvas.width = 640;
   canvas.height = 400;
@@ -43,16 +66,16 @@ function buildScreenTexture(): THREE.CanvasTexture {
   });
 
   g.fillStyle = '#00E5FF';
-  g.font = '700 50px "JetBrains Mono", monospace';
-  g.fillText('HΛESSLER_WORLD', 40, 138);
+  g.font = '700 46px "JetBrains Mono", monospace';
+  g.fillText(systemName, 40, 138);
 
   g.fillStyle = '#4CC9FF';
   g.font = '24px "JetBrains Mono", monospace';
-  g.fillText('SYSTEM ONLINE', 40, 190);
+  g.fillText(systemStatus, 40, 190);
 
   g.fillStyle = '#8A9AA5';
   g.font = '20px "JetBrains Mono", monospace';
-  ['FULL STACK', 'MOBILE', 'ARCHITECTURE', 'AI'].forEach((domain, index) => {
+  domains.forEach((domain, index) => {
     const column = index % 2;
     const row = Math.floor(index / 2);
     g.fillText(domain, 40 + column * 280, 252 + row * 40);
@@ -69,26 +92,41 @@ function buildScreenTexture(): THREE.CanvasTexture {
   return texture;
 }
 
+const easeInOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
 /**
- * HAESSLER WORLD opening scene: a stylized engineering workstation — desk,
- * monitor (live screen texture), keyboard, mug, cable, books, the mascot and
- * ambient particles in a dark atmospheric space.
+ * HAESSLER WORLD opening scene: the workstation plus six interactive area
+ * objects standing in the space around it (Phase 4). Low-poly primitives
+ * throughout; every string comes from the dictionaries via the hero.
  *
- * Deliberately low-poly primitives (no downloaded assets except the mascot
- * GLB), so the whole scene is a few dozen draw calls and works on mobile.
- * Composition is the default view; the visitor may orbit gently but never
- * has to. Everything decorative — the camera never gates comprehension,
- * because every fact on the screen exists as HTML in the hero.
+ * Camera contract (§5): a clear default composition that already works, a
+ * gentle orbit the visitor may play with, wheel/pinch zoom bounded to a
+ * sensible range around the desk, and a smooth dolly to an area object when
+ * it is activated — always returning to the default frame. The camera never
+ * gates comprehension: the hero's HTML carries every fact.
  */
-export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
+export function createWorkstationScene(
+  ctx: SceneContext,
+  props: WorkstationSceneProps
+): SceneLifecycle {
   const { scene, camera, renderer, isMobile, prefersReducedMotion, pointer } =
     ctx;
 
   const world = new THREE.Group();
   scene.add(world);
 
-  camera.position.set(0, 1.55, 5.1);
-  camera.lookAt(0, 0.95, 0);
+  const DEFAULT_LANDSCAPE = {
+    position: new THREE.Vector3(0, 1.55, 5.1),
+    target: new THREE.Vector3(0, 0.95, 0),
+  };
+  const DEFAULT_PORTRAIT = {
+    position: new THREE.Vector3(0, 1.35, 7.8),
+    target: new THREE.Vector3(0, 1.25, 0),
+  };
+
+  camera.position.copy(DEFAULT_LANDSCAPE.position);
+  camera.lookAt(DEFAULT_LANDSCAPE.target);
 
   // — lighting: cool ambient, soft key, cyan rim, screen glow.
   const ambient = new THREE.AmbientLight(0x3a4a58, 0.85);
@@ -143,7 +181,7 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
     world.add(leg);
   });
 
-  // — monitor.
+  // — monitor (screen copy drawn from the dictionary).
   const monitor = new THREE.Mesh(new THREE.BoxGeometry(1.62, 1.0, 0.07), frameMaterial);
   monitor.position.set(0, 1.35, -0.35);
   const stand = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.52, 0.07), frameMaterial);
@@ -152,7 +190,11 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
   standBase.position.set(0, 0.49, -0.37);
   world.add(monitor, stand, standBase);
 
-  const screenTexture = buildScreenTexture();
+  const screenTexture = buildScreenTexture(
+    props.systemName,
+    props.systemStatus,
+    props.domains
+  );
   const screen = new THREE.Mesh(
     new THREE.PlaneGeometry(1.5, 0.9),
     new THREE.MeshBasicMaterial({ map: screenTexture })
@@ -201,10 +243,7 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
   bookB.rotation.y = 0.18;
   world.add(bookA, bookB);
 
-  // — floating area anchors. Placeholders for the Phase-4 world objects
-  //   (MOBILE electric blue / SYSTEM cyan / WEB3 violet); they give the
-  //   opening frame depth and preview the area color language. The heaviest
-  //   one (torus knot) is dropped on mobile to cut geometry.
+  // — decorative depth floaters (area-colored; dropped heavy one on mobile).
   const floaters: Array<{
     mesh: THREE.Mesh;
     baseY: number;
@@ -265,15 +304,18 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
   });
 
   // — gentle orbit: a controlled camera the visitor may play with, never one
-  //   they must master. On touch, vertical scrolling stays alive over the
-  //   canvas; horizontal drags rotate.
+  //   they must master. Bounded zoom (wheel on desktop) leans into the desk;
+  //   pan stays off; on touch, one-finger vertical scrolling stays alive.
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, 0.95, 0);
-  controls.enableZoom = false;
+  controls.target.copy(DEFAULT_LANDSCAPE.target);
   controls.enablePan = false;
+  controls.enableZoom = !isMobile;
+  controls.minDistance = 3.4;
+  controls.maxDistance = 9;
   controls.enableDamping = true;
   controls.dampingFactor = 0.06;
   controls.rotateSpeed = 0.45;
+  controls.zoomSpeed = 0.6;
   controls.minPolarAngle = Math.PI * 0.3;
   controls.maxPolarAngle = Math.PI * 0.55;
   controls.autoRotate = !prefersReducedMotion;
@@ -282,29 +324,75 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
     renderer.domElement.style.touchAction = 'pan-y';
   }
 
-  /**
-   * Portrait reframe: a phone screen is tall and narrow, so the landscape
-   * composition would crop the workstation. Pulling the camera back and
-   * raising the target keeps desk + monitor + mascot in frame without
-   * shrinking the HTML content. Fires through `ctx.onResize` on mount and
-   * on every rotation/resize; landscape restores the default composition.
-   */
+  /** Portrait reframe (see SceneContainer onResize contract). */
   let portrait = camera.aspect < 0.95;
+  const defaultView = () => (portrait ? DEFAULT_PORTRAIT : DEFAULT_LANDSCAPE);
   const applyFraming = () => {
     const nextPortrait = camera.aspect < 0.95;
     if (nextPortrait === portrait) return;
     portrait = nextPortrait;
-
-    if (portrait) {
-      camera.position.set(0, 1.35, 7.8);
-      controls.target.set(0, 1.25, 0);
-    } else {
-      camera.position.set(0, 1.55, 5.1);
-      controls.target.set(0, 0.95, 0);
-    }
+    const view = defaultView();
+    camera.position.copy(view.position);
+    controls.target.copy(view.target);
     controls.update();
   };
   ctx.onResize(() => applyFraming());
+
+  // — camera flights: object → camera dolly (§8), eased, interruptible.
+  interface Flight {
+    fromPosition: THREE.Vector3;
+    toPosition: THREE.Vector3;
+    fromTarget: THREE.Vector3;
+    toTarget: THREE.Vector3;
+    elapsed: number;
+    duration: number;
+  }
+  let flight: Flight | null = null;
+
+  const flyTo = (position: THREE.Vector3, target: THREE.Vector3) => {
+    controls.autoRotate = false;
+    flight = {
+      fromPosition: camera.position.clone(),
+      toPosition: position.clone(),
+      fromTarget: controls.target.clone(),
+      toTarget: target.clone(),
+      elapsed: 0,
+      duration: 0.95,
+    };
+  };
+
+  // — interactive world objects (hover/click/pick live in WorldObjects).
+  const worldObjects = createWorldObjects(ctx, {
+    onHover: (areaId) => props.onHoverArea?.(areaId),
+    onSelect: (areaId) => {
+      worldObjects.setActive(areaId);
+      const [x, y, z] = AREA_POSITIONS[areaId];
+      // Frame the object off-center-left so the HTML panel can share the
+      // stage without covering it, pulling in along the world axis.
+      flyTo(
+        new THREE.Vector3(x * 0.55, y + 0.3, z + 2.3),
+        new THREE.Vector3(x * 0.9, y, z)
+      );
+      props.onActivateArea?.(areaId);
+    },
+  });
+
+  const api: WorldSceneApi = {
+    focusArea(areaId) {
+      if (areaId === null) {
+        worldObjects.setActive(null);
+        const view = defaultView();
+        flyTo(view.position, view.target);
+        return;
+      }
+      const [x, y, z] = AREA_POSITIONS[areaId];
+      flyTo(
+        new THREE.Vector3(x * 0.55, y + 0.3, z + 2.3),
+        new THREE.Vector3(x * 0.9, y, z)
+      );
+    },
+  };
+  props.onReady?.(api);
 
   const update = (time: number, delta: number) => {
     if (!prefersReducedMotion) {
@@ -317,22 +405,36 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
       });
       screenGlow.intensity = 1.3 + Math.sin(time * 2.2) * 0.07;
 
-      // Pointer parallax on the world itself — works with, not against, the
-      // orbit controls that own the camera.
-      const tiltY = pointer.x * 0.05;
-      const tiltX = -pointer.y * 0.035;
-      world.rotation.y += (tiltY - world.rotation.y) * 0.05;
-      world.rotation.x += (tiltX - world.rotation.x) * 0.05;
+      // Pointer parallax pauses while the camera is flying so it never
+      // fights the dolly.
+      if (!flight) {
+        const tiltY = pointer.x * 0.05;
+        const tiltX = -pointer.y * 0.035;
+        world.rotation.y += (tiltY - world.rotation.y) * 0.05;
+        world.rotation.x += (tiltX - world.rotation.x) * 0.05;
+      }
+    }
+
+    if (flight) {
+      flight.elapsed += delta;
+      const t = Math.min(flight.elapsed / flight.duration, 1);
+      const k = easeInOutCubic(t);
+      camera.position.lerpVectors(flight.fromPosition, flight.toPosition, k);
+      controls.target.lerpVectors(flight.fromTarget, flight.toTarget, k);
+      if (t >= 1) flight = null;
     }
 
     mascot.update(time, prefersReducedMotion ? { x: 0, y: 0 } : pointer);
+    worldObjects.update(time, delta);
     controls.update();
   };
 
   const dispose = () => {
     controls.dispose();
+    worldObjects.dispose();
     mascot.dispose();
     particles.dispose();
+    screenTexture.dispose();
     scene.remove(world);
     disposeObjectTree(world);
   };
@@ -341,13 +443,50 @@ export function createWorkstationScene(ctx: SceneContext): SceneLifecycle {
 }
 
 /**
- * React wrapper around the raw-Three factory. Loaded client-side only via
- * `next/dynamic` from the hero, so three.js never blocks first paint.
+ * React wrapper around the raw-Three factory. Client-only (the hero imports
+ * it through `next/dynamic`), so three.js never blocks first paint. Latest
+ * callbacks are kept in a ref so hover/click wiring survives hero re-renders
+ * without rebuilding the scene.
  */
-export const WorkstationScene = ({ label, onStatus }: WorkstationSceneProps) => {
-  const factory = useMemo<SceneFactory>(() => createWorkstationScene, []);
+export const WorkstationScene = ({
+  label,
+  onStatus,
+  systemName,
+  systemStatus,
+  domains,
+  onHoverArea,
+  onActivateArea,
+  onReady,
+}: WorkstationSceneProps) => {
+  const latest = useRef({
+    onHoverArea,
+    onActivateArea,
+    onReady,
+  });
 
-  return <SceneContainer create={factory} label={label} onStatus={onStatus} />;
+  useEffect(() => {
+    latest.current = { onHoverArea, onActivateArea, onReady };
+  }, [onHoverArea, onActivateArea, onReady]);
+
+  const factory = useMemo<SceneFactory>(
+    () => (sceneCtx) =>
+      createWorkstationScene(sceneCtx, {
+        // Screen copy is read once at scene creation; the scene remounts on
+        // locale change because the whole page tree re-renders under it.
+        systemName,
+        systemStatus,
+        domains,
+        onHoverArea: (areaId) => latest.current.onHoverArea?.(areaId),
+        onActivateArea: (areaId) => latest.current.onActivateArea?.(areaId),
+        onReady: (api) => latest.current.onReady?.(api),
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  return (
+    <SceneContainer create={factory} label={label} onStatus={onStatus} />
+  );
 };
 
 export default WorkstationScene;

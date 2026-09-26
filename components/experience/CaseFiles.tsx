@@ -5,7 +5,7 @@ import { Chip, ExperienceSection } from './ExperienceSection';
 import { Glow } from '../ui/Glow';
 import { Metric } from '../ui/Metric';
 import { Reveal } from '../ui/Reveal';
-import { caseList } from '../../lib/experience/cases';
+import { caseList, type CaseId } from '../../lib/experience/cases';
 import { metrics } from '../../lib/experience/metrics';
 import { sectionAnchor, sectionIndex } from '../../lib/experience/content';
 import { useExperienceTranslation } from '../../lib/experience/dictionaries';
@@ -16,7 +16,17 @@ import { useExperienceTranslation } from '../../lib/experience/dictionaries';
  * Three projects, each linking out to the legacy deep-dive that already exists
  * (`/works/*`) instead of duplicating those write-ups here. Metrics shown on a
  * card are the ones `lib/experience/metrics.ts` attributes to that case.
+ *
+ * Each card carries its area's semantic accent (§14): Busi = MOBILE electric
+ * blue, DecentralFi = WEB3 violet, Zumetrics = system cyan. Thin rings and
+ * colored labels only — the accent budget stays small.
  */
+const caseAccent: Record<CaseId, string> = {
+  busi: 'osElectricBlue',
+  decentralfi: 'osViolet',
+  zumetrics: 'osAccent',
+};
+
 export const CaseFiles = () => {
   const t = useExperienceTranslation();
   const labels = t.sections.cases.labels;
@@ -32,10 +42,13 @@ export const CaseFiles = () => {
         {caseList.map((caseFile, position) => {
           const copy = t.cases[caseFile.id];
           const caseMetrics = caseFile.metricIds.map((id) => metrics[id]);
+          const accent = caseAccent[caseFile.id];
 
           return (
             <Reveal key={caseFile.id} delay={position * 0.05}>
               <Glow
+                accentColor={accent}
+                active
                 bg="osSurface"
                 borderRadius="md"
                 p={{ base: 5, md: 7 }}
@@ -48,7 +61,7 @@ export const CaseFiles = () => {
                     fontFamily="mono"
                     fontSize="xs"
                     letterSpacing="0.18em"
-                    color="osAccent"
+                    color={accent}
                   >
                     {caseFile.code}
                   </Text>
@@ -121,8 +134,8 @@ export const CaseFiles = () => {
                     fontSize="xs"
                     letterSpacing="0.12em"
                     textTransform="uppercase"
-                    color="osAccentSoft"
-                    _hover={{ color: 'osAccent' }}
+                    color={accent}
+                    _hover={{ color: 'osText' }}
                   >
                     {labels.deepDive} →
                   </Link>

@@ -5,7 +5,20 @@ interface GlowProps extends Omit<BoxProps, 'children'> {
   children?: ReactNode;
   /** Selected/active state. Reserved for a handful of moments, not every card. */
   active?: boolean;
+  /**
+   * Chakra color token for the ring (e.g. `osViolet`). Defaults to the cyan
+   * primary; semantic accents are passed by the few callers that earn them.
+   */
+  accentColor?: string;
 }
+
+const haloByAccent: Record<string, string> = {
+  osAccent: '0 0 0 1px rgba(0, 229, 255, 0.35), 0 0 22px rgba(0, 229, 255, 0.10)',
+  osElectricBlue: '0 0 0 1px rgba(61, 139, 255, 0.35), 0 0 22px rgba(61, 139, 255, 0.10)',
+  osViolet: '0 0 0 1px rgba(139, 92, 246, 0.35), 0 0 22px rgba(139, 92, 246, 0.10)',
+  osMagenta: '0 0 0 1px rgba(225, 79, 209, 0.35), 0 0 22px rgba(225, 79, 209, 0.10)',
+  osAmber: '0 0 0 1px rgba(245, 169, 127, 0.35), 0 0 22px rgba(245, 169, 127, 0.10)',
+};
 
 /**
  * Restrained accent ring.
@@ -13,15 +26,16 @@ interface GlowProps extends Omit<BoxProps, 'children'> {
  * The accent budget for the whole experience is roughly 3%, so this is a thin
  * ring plus a very soft halo instead of the usual neon drop shadow.
  */
-export const Glow = ({ children, active = false, ...boxProps }: GlowProps) => (
+export const Glow = ({
+  children,
+  active = false,
+  accentColor = 'osAccent',
+  ...boxProps
+}: GlowProps) => (
   <Box
     borderWidth="1px"
-    borderColor={active ? 'osAccent' : 'osBorder'}
-    boxShadow={
-      active
-        ? '0 0 0 1px rgba(0, 229, 255, 0.35), 0 0 22px rgba(0, 229, 255, 0.10)'
-        : undefined
-    }
+    borderColor={active ? accentColor : 'osBorder'}
+    boxShadow={active ? haloByAccent[accentColor] ?? haloByAccent.osAccent : undefined}
     transition="border-color 160ms ease, box-shadow 160ms ease"
     {...boxProps}
   >

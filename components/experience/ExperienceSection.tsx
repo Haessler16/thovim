@@ -125,13 +125,18 @@ export const ReadoutRow = ({
   </Flex>
 );
 
-/** Stack/metadata chip. `active` spends a little of the cyan budget. */
+/**
+ * Stack/metadata chip. `active` spends a little of the accent budget;
+ * `accentColor` swaps the cyan primary for a semantic area accent.
+ */
 export const Chip = ({
   children,
   active = false,
+  accentColor = 'osAccent',
 }: {
   children: ReactNode;
   active?: boolean;
+  accentColor?: string;
 }) => (
   <Box
     as="span"
@@ -139,13 +144,13 @@ export const Chip = ({
     px={3}
     py={1}
     borderWidth="1px"
-    borderColor={active ? 'osAccent' : 'osBorder'}
+    borderColor={active ? accentColor : 'osBorder'}
     borderRadius="sm"
     bg="osSurface"
     fontFamily="mono"
     fontSize="xs"
     letterSpacing="0.08em"
-    color={active ? 'osAccent' : 'osTextSecondary'}
+    color={active ? accentColor : 'osTextSecondary'}
   >
     {children}
   </Box>

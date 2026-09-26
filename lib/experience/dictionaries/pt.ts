@@ -1,3 +1,4 @@
+import type { WorldAreaId } from '../content';
 import type { ExperienceDictionary } from './en';
 
 /**
@@ -11,6 +12,8 @@ export const pt: ExperienceDictionary = {
     name: 'HΛESSLER_WORLD',
     status: 'SISTEMA ONLINE',
     enter: 'EXPLORAR O MUNDO',
+    /** Quatro domínios renderizados na tela do monitor 3D. */
+    domains: ['FULL STACK', 'MOBILE', 'ARQUITETURA', 'IA'],
     tagline: [
       'ENGENHEIRO FULL STACK',
       'ENGENHEIRO MOBILE',
@@ -139,6 +142,43 @@ export const pt: ExperienceDictionary = {
       architectureLeadership: 'Arquitetura / liderança técnica',
       aiAutomation: 'IA / automação',
     },
+  },
+  world: {
+    areaNames: {
+      mobile: 'MOBILE',
+      web3: 'WEB3',
+      backend: 'BACKEND',
+      architecture: 'ARQUITETURA',
+      ai: 'IA',
+      human: 'HUMANO',
+    } satisfies Record<WorldAreaId, string>,
+    areas: {
+      architecture:
+        'Como uma requisição atravessa o sistema — e o que cada camada custa.',
+      ai: 'Agentes que alcançam sistemas internos via MCP, orquestrados com n8n.',
+      human: 'A mesma curiosidade, aplicada sem ticket.',
+    } satisfies Record<'architecture' | 'ai' | 'human', string>,
+    labels: {
+      proof: 'EVIDÊNCIA',
+      viewCase: 'VER ESTUDO DE CASO',
+      openSection: 'ABRIR NA PÁGINA',
+      layers: 'CAMADAS',
+      pipeline: 'PIPELINE',
+      interests: 'INTERESSES',
+      close: 'FECHAR',
+    },
+  },
+  quickView: {
+    title: 'BRIEF PARA RECRUTADOR',
+    close: 'FECHAR',
+    yearsLabel: 'ANOS',
+    locationLabel: 'LOCALIZAÇÃO',
+    stackLabel: 'STACK PRINCIPAL',
+    casesLabel: 'PROJETOS PRINCIPAIS',
+    lookingForLabel: 'BUSCANDO',
+    contactLabel: 'CONTATO',
+    fullExperience: 'EXPLORAR O MUNDO COMPLETO',
+    recruiterPage: 'PÁGINA DO RECRUTADOR',
   },
   boot: {
     lines: [

@@ -9,6 +9,7 @@ import type {
   ProblemId,
   ToolId,
   WhatIBuildId,
+  WorldAreaId,
 } from '../content';
 import type { CaseId } from '../cases';
 import type { MetricId } from '../metrics';
@@ -29,6 +30,8 @@ export const en = {
     name: 'HΛESSLER_WORLD',
     status: 'SYSTEM ONLINE',
     enter: 'ENTER WORLD',
+    /** Four domains rendered on the 3D monitor screen. */
+    domains: ['FULL STACK', 'MOBILE', 'ARCHITECTURE', 'AI'],
     tagline: [
       'FULL STACK ENGINEER',
       'MOBILE ENGINEER',
@@ -160,6 +163,45 @@ export const en = {
       architectureLeadership: 'Architecture / technical leadership',
       aiAutomation: 'AI / automation',
     } satisfies Record<LookingForId, string>,
+  },
+  world: {
+    /** Display names for the interactive world areas. */
+    areaNames: {
+      mobile: 'MOBILE',
+      web3: 'WEB3',
+      backend: 'BACKEND',
+      architecture: 'ARCHITECTURE',
+      ai: 'AI',
+      human: 'HUMAN',
+    } satisfies Record<WorldAreaId, string>,
+    /** Panel copy for areas without a case file (one sentence each). */
+    areas: {
+      architecture:
+        'How a request travels through the system — and what each layer costs.',
+      ai: 'Agents that reach internal systems through MCP, orchestrated with n8n.',
+      human: 'The same curiosity, applied without a ticket.',
+    } satisfies Record<'architecture' | 'ai' | 'human', string>,
+    labels: {
+      proof: 'PROOF',
+      viewCase: 'VIEW CASE STUDY',
+      openSection: 'OPEN IN THE PAGE',
+      layers: 'LAYERS',
+      pipeline: 'PIPELINE',
+      interests: 'INTERESTS',
+      close: 'CLOSE',
+    },
+  },
+  quickView: {
+    title: 'RECRUITER BRIEF',
+    close: 'CLOSE',
+    yearsLabel: 'YEARS',
+    locationLabel: 'LOCATION',
+    stackLabel: 'CORE STACK',
+    casesLabel: 'FLAGSHIP PROJECTS',
+    lookingForLabel: 'LOOKING FOR',
+    contactLabel: 'CONTACT',
+    fullExperience: 'EXPLORE THE FULL WORLD',
+    recruiterPage: 'RECRUITER PAGE',
   },
   boot: {
     /**

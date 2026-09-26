@@ -120,8 +120,6 @@ export const SystemNavigation = () => {
             />
 
             <Button
-              as={NextLink}
-              href="/recrutatech"
               size="xs"
               variant="outline"
               borderColor="osBorder"
@@ -132,6 +130,11 @@ export const SystemNavigation = () => {
               textTransform="uppercase"
               _hover={{ borderColor: 'osAccent', color: 'osAccent' }}
               _focusVisible={{ boxShadow: '0 0 0 3px rgba(0, 229, 255, 0.45)' }}
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent('haessler:quick-view')
+                )
+              }
             >
               {t.shell.quickView}
             </Button>
@@ -139,12 +142,12 @@ export const SystemNavigation = () => {
             <Link
               as={NextLink}
               href="/classic"
-              display={{ base: 'none', lg: 'inline-block' }}
               fontFamily="mono"
               fontSize="xs"
               letterSpacing="0.14em"
               textTransform="uppercase"
               color="osTextMuted"
+              whiteSpace="nowrap"
               _hover={{ color: 'osAccent' }}
             >
               {t.shell.classicPortfolio}

@@ -86,7 +86,8 @@ export const AILab = () => {
             fontSize="xs"
             letterSpacing="0.18em"
             textTransform="uppercase"
-            color="osAccent"
+            /** AI's semantic accent (§14): magenta, only in this lab. */
+            color="osMagenta"
           >
             {t.sections.aiLab.askLabel}
           </Text>
@@ -107,7 +108,7 @@ export const AILab = () => {
                   whiteSpace="normal"
                   bg={isActive ? 'osElevated' : 'transparent'}
                   borderLeftWidth="2px"
-                  borderColor={isActive ? 'osAccent' : 'transparent'}
+                  borderColor={isActive ? 'osMagenta' : 'transparent'}
                   _hover={{ bg: 'osElevated' }}
                   _focusVisible={{
                     boxShadow: '0 0 0 3px rgba(0, 229, 255, 0.45)',

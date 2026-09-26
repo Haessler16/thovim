@@ -289,6 +289,80 @@ export const aiQuestionIds = [
 export type AiQuestionId = (typeof aiQuestionIds)[number];
 
 /* ------------------------------------------------------------------
+   WORLD AREAS (Phase 4)
+   The 3D layer is decorative; these are the facts its objects stand
+   for. Geometry and positions live in `components/3d/WorldObjects` —
+   here we only keep identity, semantic accent (§14) and proof links.
+   ------------------------------------------------------------------ */
+
+export const worldAreaIds = [
+  'mobile',
+  'web3',
+  'backend',
+  'architecture',
+  'ai',
+  'human',
+] as const;
+export type WorldAreaId = (typeof worldAreaIds)[number];
+
+/** Chakra color tokens from `lib/theme.ts` — never raw hex in components. */
+export type WorldAreaAccent =
+  | 'osAccent'
+  | 'osElectricBlue'
+  | 'osViolet'
+  | 'osMagenta'
+  | 'osAmber';
+
+export interface WorldArea {
+  id: WorldAreaId;
+  /** Semantic accent: MOBILE electric blue, WEB3 violet, AI magenta, HUMAN amber. */
+  accent: WorldAreaAccent;
+  /** Case file backing the area's proof. Areas without one link to a section. */
+  caseId: CaseId | null;
+  /** Metric surfaced on the hover chip; value from `metrics.ts`. */
+  headlineMetricId: MetricId | null;
+}
+
+export const worldAreas: WorldArea[] = [
+  {
+    id: 'mobile',
+    accent: 'osElectricBlue',
+    caseId: 'busi',
+    headlineMetricId: 'activeUsers',
+  },
+  {
+    id: 'web3',
+    accent: 'osViolet',
+    caseId: 'decentralfi',
+    headlineMetricId: 'transactionSuccess',
+  },
+  {
+    id: 'backend',
+    accent: 'osAccent',
+    caseId: 'zumetrics',
+    headlineMetricId: 'queryLatency',
+  },
+  {
+    id: 'architecture',
+    accent: 'osAccent',
+    caseId: null,
+    headlineMetricId: null,
+  },
+  {
+    id: 'ai',
+    accent: 'osMagenta',
+    caseId: null,
+    headlineMetricId: null,
+  },
+  {
+    id: 'human',
+    accent: 'osAmber',
+    caseId: null,
+    headlineMetricId: null,
+  },
+];
+
+/* ------------------------------------------------------------------
    HUMAN.EXE
    ------------------------------------------------------------------ */
 
